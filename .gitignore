@@ -1,0 +1,11 @@
+# Build / IDE
+**/target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets (không bao giờ commit)
+**/application-local.properties
+**/*.env

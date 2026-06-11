@@ -1,0 +1,23 @@
+# Render Blueprint — deploy backend + MySQL (paid MySQL on Render; hoặc dùng Railway MySQL rồi chỉ deploy web ở đây)
+services:
+  - type: web
+    name: is207-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/products
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: cloud
+      - key: JWT_SECRET
+        generateValue: true
+      - key: APP_SEED_ENABLED
+        value: "true"
+      - key: APP_SEED_PRODUCTS
+        value: "true"
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false

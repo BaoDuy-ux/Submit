@@ -1,0 +1,99 @@
+name,category,sku,price,brand,material,colors,sizes,stock_by_size,image_url,image_file
+Áo hoodie unisex,ao,AHD003,520000,UrbanX,N?,Xám;Đen,M;L;XL,M:7|L:9|XL:4,,AHD003.jpg
+Áo so mi caro,ao,ASM004,390000,IS207,Kaki,Xanh;Đ?,M;L,M:6|L:8,,ASM004.jpg
+Qu?n short th? thao,quan,QST005,220000,SportZ,Polyester,Đen;Xám,S;M;L,S:8|M:10|L:6,,QST005.jpg
+Áo khoác bomber,ao,AKB006,680000,UrbanX,Dù,Đen;Rêu,M;L;XL,M:4|L:6|XL:3,,AKB006.jpg
+Qu?n jogger nam,quan,QJG007,340000,IS207,N?,Xám;Đen,M;L;XL,M:9|L:7|XL:5,,QJG007.jpg
+Áo polo nam,ao,APL008,280000,Classic,Cotton,Tr?ng;Xanh,S;M;L,S:5|M:10|L:7,,APL008.jpg
+Qu?n kaki dài,quan,QKK009,410000,Classic,Kaki,Kem;Đen,M;L;XL,M:6|L:9|XL:4,,qkk009.jpg
+Áo len c? l?,ao,ALC010,470000,Winter,Wool,Be;Nâu,M;L,M:5|L:5,,ALC010.jpg
+Váy hoa n?,vay,VHN011,360000,Femi,Voan,H?ng;Tr?ng,S;M,S:7|M:6,,VHN011.jpg
+Áo croptop n?,ao,ACT012,190000,Femi,Cotton,Tr?ng;H?ng,S;M,S:9|M:8,,ACT012.jpg
+Qu?n legging n?,quan,QLG013,210000,SportZ,Thun l?nh,Đen,S;M;L,S:10|M:10|L:8,,QLG013.jpg
+Áo blazer n?,ao,ABZ014,750000,OfficeX,Tuy?t mua,Đen;Kem,M;L,M:4|L:3,,ABZ014.jpg
+Chân váy tennis,vay,CVT015,270000,Femi,Kaki,Tr?ng;Đen,S;M,S:6|M:7,,CVT015.jpg
+Áo sweater oversize,ao,ASO016,430000,UrbanX,N?,Xám;Tr?ng,M;L;XL,M:8|L:8|XL:4,,ASO016.jpg
+Qu?n baggy jean,quan,QBJ017,490000,DenimCo,Jean,Xanh nh?t,S;M;L,S:5|M:7|L:6,,QBJ017.jpg
+Áo tanktop gym,ao,ATG018,180000,SportZ,Polyester,Đen;Tr?ng,M;L,M:10|L:9,,ATG018.jpg
+Đ?m công s?,vay,DCS019,620000,OfficeX,L?a,Đen;Xanh navy,S;M;L,S:3|M:5|L:4,,DCS019.jpg
+Áo cardigan n?,ao,ACD020,390000,Winter,Len,Be;Nâu,M;L,M:6|L:5,,ACD020.jpg
+Qu?n tây nam,quan,QTN021,530000,Classic,Tuy?t mua,Đen;Xám,M;L;XL,M:5|L:7|XL:4,,QTN021.jpg
+Áo so mi tr?ng,ao,ASM022,320000,OfficeX,Cotton,Tr?ng,S;M;L,S:8|M:10|L:7,,ASM022.jpg
+Qu?n short jean n?,quan,QSJ023,260000,DenimCo,Jean,Xanh,S;M,S:6|M:5,,QSJ023.jpg
+Áo khoác jean,ao,AKJ024,710000,DenimCo,Jean,Xanh d?m,M;L;XL,M:4|L:6|XL:2,,AKJ024.jpg
+Áo thun in h́nh,ao,ATH025,230000,UrbanX,Cotton,Tr?ng;Đen,S;M;L,S:10|M:9|L:8,,ATH025.jpg
+Qu?n culottes n?,quan,QCL026,350000,Femi,Kaki,Kem;Đen,M;L,M:7|L:6,,QCL026.jpg
+Áo vest nam,ao,AVN027,980000,Classic,Tuy?t mua,Đen,M;L;XL,M:3|L:4|XL:2,,AVN027.jpg
+Đ?m maxi di bi?n,vay,DMB028,540000,Femi,Voan,Vàng;Tr?ng,S;M;L,S:4|M:6|L:5,,DMB028.jpg
+Áo gile len,ao,AGL029,310000,Winter,Len,Nâu;Kem,M;L,M:7|L:6,,AGL029.jpg
+Qu?n th? thao n?,quan,QTT030,290000,SportZ,Polyester,Đen;H?ng,S;M;L,S:9|M:8|L:7,,QTT030.jpg
+Áo hoodie zip,ao,AHZ031,550000,UrbanX,N?,Đen;Xám,M;L;XL,M:6|L:8|XL:4,,AHZ031.jpg
+Qu?n dùi thun nam,quan,QDT032,150000,SportZ,Cotton,Đen;Xám,S;M;L,S:12|M:15|L:10,,QDT032.jpg
+Áo so mi c? tr?,ao,ASM033,360000,Classic,Linen,Tr?ng;Xanh nh?t,M;L;XL,M:8|L:7|XL:5,,ASM033.jpg
+Váy midi x?p ly,vay,VMX034,420000,Femi,L?a,Nâu;Đen,S;M;L,S:5|M:8|L:4,,VMX034.jpg
+Áo khoác gió th? thao,ao,AKG035,480000,SportZ,Dù,Xanh duong;Đen,M;L;XL,M:10|L:8|XL:5,,AKG035.jpg
+Qu?n jean rách nam,quan,QJR036,490000,DenimCo,Jean,Xanh b?c,S;M;L;XL,S:4|M:9|L:8|XL:3,,QJR036.jpg
+Áo thun polo n?,ao,APN037,260000,Classic,Cotton,H?ng;Tr?ng,S;M;L,S:8|M:10|L:6,,APN037.jpg
+Chân váy ch? A,vay,CVA038,290000,Femi,Kaki,Đen;Be,S;M,S:11|M:9,,CVA038.jpg
+Áo len gân n?,ao,ALG039,380000,Winter,Wool,Đ? dô;Kem,M;L,M:7|L:6,,ALG039.jpg
+Qu?n ?ng r?ng n?,quan,QOR040,370000,Femi,Tuy?t mua,Đen;Tr?ng,M;L;XL,M:9|L:8|XL:4,,QOR040.jpg
+Áo khoác phao béo,ao,AKP041,850000,Winter,Phao,Đen;Rêu,M;L;XL,M:3|L:5|XL:2,,AKP041.jpg
+Qu?n jogger túi h?p,quan,QTH042,380000,UrbanX,Kaki,Đen;Rêu,M;L;XL,M:8|L:7|XL:5,,QTH042.jpg
+Áo dây l?a n?,ao,ADL043,170000,Femi,L?a,Tr?ng;Đen,S;M,S:10|M:12,,ADL043.jpg
+Đ?m len body,vay,DLB044,510000,Winter,Len,Đen;Nâu,S;M;L,S:4|M:6|L:4,,DLB044.jpg
+Áo so mi denim,ao,ASD045,450000,DenimCo,Jean,Xanh nh?t,M;L;XL,M:6|L:8|XL:3,,ASD045.jpg
+Qu?n short kaki nam,quan,QSK046,280000,IS207,Kaki,Kem;Than,S;M;L;XL,S:7|M:11|L:9|XL:4,,QSK046.jpg
+Áo thun tay dài,ao,ATD047,220000,IS207,Cotton,Đen;Tr?ng,S;M;L,S:9|M:12|L:8,,ATD047.jpg
+Váy hai dây hoa nhí,vay,VHD048,390000,Femi,Voan,Vàng;Xanh,S;M;L,S:6|M:7|L:5,,VHD048.jpg
+Áo blazer dáng ng?n,ao,ABN049,690000,OfficeX,Tuy?t mua,Kem,S;M,S:5|M:7,,ABN049.jpg
+Qu?n tây baggy n?,quan,QTB050,410000,OfficeX,Tuy?t mua,Đen;Xám,S;M;L,S:8|M:10|L:6,,QTB050.jpg
+Áo sweater n? chân cua,ao,ASC051,420000,UrbanX,N?,Xanh rêu,M;L;XL,M:7|L:9|XL:4,,ASC051c.jpg
+Qu?n kaki ?ng suông,quan,QKS052,430000,Classic,Kaki,Đen;Be,M;L;XL,M:8|L:8|XL:5,,QKS052.jpg
+Áo croptop tay dài,ao,ACD053,210000,Femi,Thun gân,Đen;Tr?ng,S;M,S:10|M:8,,ACD053.jpg
+Đ?m voan to dáng dài,vay,DVD054,650000,Femi,Voan,H?ng pastel,S;M;L,S:4|M:5|L:3,,DVD054.jpg
+Áo khoác d? dáng dài,ao,AKD055,1200000,Winter,D?,Nâu;Đen,M;L,M:3|L:4,,AKD055.jpg
+Qu?n boi nam co giăn,quan,QBN056,190000,SportZ,Polyester,Đen,M;L;XL,M:15|L:12|XL:8,,QBN056.jpg
+Áo thun oversize unisex,ao,ATO057,260000,UrbanX,Cotton,Tr?ng;Tím,M;L;XL,M:14|L:12|XL:6,,ATO057.jpg
+Chân váy jean ng?n,vay,CVJ058,320000,DenimCo,Jean,Xanh basic,S;M;L,S:8|M:9|L:5,,CVJ058.jpg
+Áo so mi flannel,ao,ASF059,410000,UrbanX,Kaki,Đ? den;Xanh den,M;L;XL,M:7|L:8|XL:4,,ASF059.jpg
+Qu?n baggy v?i n?,quan,QBV060,360000,OfficeX,Tuy?t mua,Kem;Đen,S;M;L,S:9|M:11|L:6,,QBV060.jpg
+Áo gile phao unisex,ao,AGP061,590000,Winter,Phao,Đen;Tr?ng,M;L;XL,M:6|L:6|XL:3,,AGP061.jpg
+Qu?n jean ?ng r?ng nam,quan,QJR062,520000,DenimCo,Jean,Xanh den,S;M;L;XL,S:5|M:10|L:8|XL:4,,QJR062.jpg
+Áo tr? vai n?,ao,ATV063,280000,Femi,Thun co giăn,Tr?ng;Đen,S;M,S:8|M:9,,ATV063.jpg
+Đ?m suông ch? A,vay,DSA064,480000,OfficeX,L?a,Xanh ng?c,S;M;L,S:4|M:7|L:5,,DSA064.jpg
+Áo gi? nhi?t nam,ao,AGN065,180000,Winter,Thun l?nh,Đen;Xám,M;L;XL,M:15|L:12|XL:10,,AGN065.jpg
+Qu?n short n? th? thao,quan,QSN066,230000,SportZ,N?,Xám,S;M;L,S:10|M:12|L:8,,QSN066.jpg
+Áo khoác kaki,ao,AKK067,590000,Classic,Kaki,Vàng ḅ;Đen,M;L;XL,M:5|L:7|XL:4,,AKK067.jpg
+Chân váy dài x?p ly,vay,CVD068,350000,Femi,Voan,Đen;Kem,S;M;L,S:6|M:8|L:5,,CVD068.jpg
+Áo thun c? tim nam,ao,ACT069,220000,IS207,Cotton,Tr?ng;Xám,S;M;L,S:11|M:10|L:7,,ACT069.jpg
+Qu?n jean n? l?ng,quan,QJL070,380000,DenimCo,Jean,Xanh nh?t,S;M;L,S:7|M:9|L:6,,QJL070.jpg
+Áo so mi l?a công s?,ao,ASL071,450000,OfficeX,L?a,Tr?ng;H?ng,S;M;L,S:8|M:10|L:6,,ASL071.jpg
+Qu?n n? bo g?u nam,quan,QNB072,330000,IS207,N?,Đen,M;L;XL,M:9|L:8|XL:5,,QNB072.jpg
+Áo khoác da biker,ao,AKD073,950000,UrbanX,Da PU,Đen,M;L;XL,M:4|L:5|XL:2,,AKD073.jpg
+Váy duôi cá ti?u thu,vay,VDC074,580000,Femi,Tuy?t mua,Tr?ng,S;M,S:5|M:6,,VDC074.jpg
+Áo tanktop dáng r?ng,ao,ATR075,190000,SportZ,Polyester,Xám;Xanh,M;L;XL,M:12|L:10|XL:7,,ATR075.jpg
+Qu?n l?ng kaki n?,quan,QLK076,270000,Classic,Kaki,Kem,S;M;L,S:7|M:8|L:4,,QLK076.jpg
+Áo cardigan len dày,ao,ACD077,490000,Winter,Len,Xám chu?t,M;L;XL,M:5|L:6|XL:3,,ACD077.jpg
+Y?m jean dáng dài,vay,YJD078,560000,DenimCo,Jean,Xanh d?m,S;M;L,S:4|M:6|L:4,,YJD078.jpg
+Áo so mi h?a ti?t bi?n,ao,ASH079,340000,UrbanX,Rayon,Đa s?c,M;L;XL,M:8|L:10|XL:5,,ASH079.jpg
+Qu?n legging dùi n?,quan,QLD080,160000,SportZ,Thun l?nh,Đen,S;M;L,S:14|M:15|L:11,,QLD080.jpg
+Áo khoác gió m?ng,ao,AKM081,350000,SportZ,Dù,Xám nh?t,M;L;XL,M:11|L:9|XL:6,,AKM081.jpg
+Qu?n tây ?ng d?ng nam,quan,QTO082,550000,Classic,Tuy?t mua,Xanh navy,M;L;XL,M:7|L:8|XL:4,,QTO082.jpg
+Áo thun unisex ph?n quang,ao,ATP083,270000,UrbanX,Cotton,Đen,M;L;XL,M:13|L:11|XL:5,,ATP083.jpg
+Đ?m body hai dây,vay,DBH084,420000,Femi,Thun gân,Đen;Đ?,S;M,S:8|M:7,,DBH084.jpg
+Áo len c? tṛn,ao,ALC085,420000,Winter,Wool,Xanh rêu,M;L;XL,M:6|L:7|XL:3,,ALC085.jpg
+Qu?n baggy jean rách,quan,QBJ086,510000,DenimCo,Jean,Xanh nh?t,S;M;L,S:5|M:8|L:7,,QBJ086.jpg
+Áo so mi c? ch?n th?,ao,ASC087,380000,Classic,Linen,Tr?ng,M;L;XL,M:6|L:8|XL:4,,ASC087.jpg
+Qu?n short thun n?,quan,QST088,180000,SportZ,Cotton,Xám;H?ng,S;M;L,S:12|M:10|L:8,,QST088.jpg
+Áo khoác d? tweed,ao,AKT089,890000,Femi,D? Tweed,Kem;Đen,S;M,S:5|M:5,,AKT089.jpg
+Chân váy suông dài,vay,CVS090,340000,OfficeX,Tuy?t mua,Đen,S;M;L,S:7|M:9|L:5,,CVS090.jpg
+Áo polo ph?i bo,ao,APP091,290000,Classic,Cotton,Xám;Tr?ng,S;M;L;XL,S:6|M:11|L:8|XL:4,,APP091.jpg
+Qu?n jogger thun n?,quan,QJN092,310000,SportZ,Cotton,Đen,S;M;L,S:9|M:10|L:7,,QJN092.jpg
+Áo thun cá s?u nam,ao,ATC093,320000,Classic,Cotton,Xanh lá,M;L;XL,M:8|L:9|XL:5,,ATC093.jpg
+B? suit công s? n?,ao,BSC094,1450000,OfficeX,Tuy?t mua,Xám d?m,S;M;L,S:3|M:4|L:2,,BSC094.jpg
+Áo sweater loang màu,ao,ASL095,460000,UrbanX,N?,Xanh loang,M;L;XL,M:7|L:6|XL:4,,ASL095.jpg
+Qu?n jean skinny n?,quan,QJS096,470000,DenimCo,Jean,Đen tron,S;M;L,S:8|M:10|L:6,,QJS096.jpg
+Áo so mi tay ng?n nam,ao,ASN097,330000,IS207,Rayon,H?a ti?t lá,M;L;XL,M:9|L:8|XL:5,,ASN097.jpg
+Váy maxi tr? vai,vay,VMT098,590000,Femi,Voan,Tr?ng,S;M;L,S:4|M:5|L:4,,VMT098.jpg
+Áo khoác phao gile nam,ao,AKP099,550000,Winter,Phao,Đen,M;L;XL,M:6|L:8|XL:3,,AKP099.jpg
+Qu?n kaki túi h?p nam,quan,QKH100,460000,UrbanX,Kaki,Xanh rêu,M;L;XL;XXL,M:5|L:7|XL:6|XXL:2,,QKH100.jpg

@@ -1,0 +1,811 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>IS207 Fashion — Shop Áo Quần Thời Trang Nam Nữ</title>
+    <meta name="description" content="IS207 Fashion — Mua áo, quần, váy, áo khoác chất lượng. Miễn phí ship đơn từ 500.000đ, đổi trả 7 ngày.">
+    <meta name="keywords" content="áo quần, thời trang, shop online, IS207">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#5c4033">
+    <link rel="canonical" href="./index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="IS207 Fashion — Shop Áo Quần">
+    <meta property="og:description" content="Thời trang áo quần tối giản. Miễn phí ship đơn từ 500.000đ.">
+    <meta property="og:image" content="assets/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="assets/hero.jpg" as="image">
+    <link rel="stylesheet" href="design-tokens.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","name":"IS207 Fashion","description":"Shop thời trang áo quần","image":"assets/hero.jpg"}</script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Chuyển tới nội dung chính</a>
+    <div class="top-bar" role="note">
+        Miễn phí vận chuyển đơn từ <strong>500.000đ</strong> · Đổi trả trong 7 ngày
+    </div>
+
+    <header class="header" role="banner">
+        <div class="container header-content">
+            <a href="./index.html" class="brand" aria-label="IS207 Fashion — Trang chủ">
+                <span class="brand-mark">I</span>
+                <span class="brand-text">
+                    <span class="brand-name">IS207 Fashion</span>
+                    <span class="brand-tagline">Thời trang hiện đại</span>
+                </span>
+            </a>
+            <div class="search-box" role="search">
+                <label for="searchInput" class="visually-hidden">Tìm sản phẩm</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id="searchInput" type="search" name="q" placeholder="Tìm áo, quần, váy..." autocomplete="off">
+            </div>
+            <div class="header-actions">
+                <button id="infoToggle" class="icon-btn" title="Giới thiệu & chính sách">
+                    <i class="fas fa-circle-info"></i>
+                </button>
+                <button id="wishlistToggle" class="icon-btn" title="Yêu thích">
+                    <i class="fas fa-heart"></i>
+                    <span id="wishlistCount" class="badge">0</span>
+                </button>
+                <button id="userToggle" class="icon-btn" title="Tài khoản">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button id="cartToggle" class="icon-btn" title="Giỏ hàng">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub nav (categories) -->
+    <nav class="subnav" aria-label="Danh mục sản phẩm">
+        <div class="container subnav-content">
+            <button class="chip active" type="button" data-category="">Tất cả</button>
+            <button class="chip" type="button" data-category="ao">Áo</button>
+            <button class="chip" type="button" data-category="quan">Quần</button>
+            <button class="chip" type="button" data-category="vay">Váy</button>
+            <button class="chip" type="button" data-category="ao-khoac">Áo khoác</button>
+        </div>
+    </nav>
+
+    <div class="home-promo" id="homePromo">
+        <!-- Promo banner carousel -->
+        <section class="promo-carousel" id="promoCarousel" aria-label="Khuyến mãi nổi bật">
+            <div class="promo-track" id="promoTrack"></div>
+            <button class="promo-arrow promo-arrow--prev" type="button" id="promoPrev" aria-label="Slide trước">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="promo-arrow promo-arrow--next" type="button" id="promoNext" aria-label="Slide tiếp">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="promo-dots" id="promoDots"></div>
+        </section>
+
+        <section class="hero" aria-label="Giới thiệu bộ sưu tập">
+            <img src="assets/hero.jpg" alt="Bộ sưu tập thời trang IS207 Fashion — áo quần tối giản" class="hero-bg" width="1920" height="1080" decoding="async">
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="container">
+                <div class="hero-inner hero-text">
+                    <p class="hero-eyebrow">Bộ sưu tập Xuân 2026</p>
+                    <h1>Phong cách tối giản,<br>thoải mái mỗi ngày</h1>
+                    <p>Chất liệu cao cấp, form chuẩn Việt. Khám phá áo, quần, váy và áo khoác mới nhất.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" id="heroShopBtn" type="button">
+                            <i class="fas fa-shopping-bag"></i> Mua sắm ngay
+                        </button>
+                        <a href="#productGrid" class="btn btn-outline-light">Xem sản phẩm</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="trust-strip">
+            <div class="trust-item">
+                <i class="fas fa-truck"></i>
+                <strong>Giao hàng nhanh</strong>
+                <span>2–5 ngày toàn quốc</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-rotate-left"></i>
+                <strong>Đổi trả dễ dàng</strong>
+                <span>Trong 7 ngày</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-shield-halved"></i>
+                <strong>Chính hãng IS207</strong>
+                <span>Cam kết chất lượng</span>
+            </div>
+        </div>
+
+        <!-- Flash sale -->
+        <section class="container section-block flash-sale" aria-labelledby="flashSaleTitle">
+            <header class="section-head section-head--flash">
+                <div>
+                    <h2 id="flashSaleTitle"><i class="fas fa-bolt"></i> Flash Sale</h2>
+                    <p class="section-sub">Giảm tới <strong>40%</strong> — số lượng có hạn. Kết thúc sau:</p>
+                </div>
+                <div class="flash-countdown" id="flashCountdown" aria-live="polite">
+                    <span class="cd-block"><span id="cdHours">00</span><small>giờ</small></span>
+                    <span class="cd-sep">:</span>
+                    <span class="cd-block"><span id="cdMinutes">00</span><small>phút</small></span>
+                    <span class="cd-sep">:</span>
+                    <span class="cd-block"><span id="cdSeconds">00</span><small>giây</small></span>
+                </div>
+            </header>
+            <div class="product-grid product-grid--compact" id="flashSaleGrid" aria-live="polite"></div>
+        </section>
+
+        <!-- Featured products -->
+        <section class="container section-block">
+            <header class="section-head">
+                <h2><i class="fas fa-star"></i> Sản phẩm nổi bật</h2>
+                <p class="section-sub">Top sản phẩm được khách hàng yêu thích nhất.</p>
+            </header>
+            <div class="product-grid product-grid--compact" id="featuredGrid"></div>
+        </section>
+
+        <!-- New collection -->
+        <section class="container section-block">
+            <header class="section-head">
+                <h2><i class="fas fa-sparkles"></i> Bộ sưu tập mới</h2>
+                <p class="section-sub">Mẫu mới nhập kho — cập nhật mỗi tuần.</p>
+            </header>
+            <div class="product-grid product-grid--compact" id="newCollectionGrid"></div>
+        </section>
+    </div>
+
+    <!-- Product list with filters -->
+    <main id="main-content" class="container main">
+        <header class="main-header">
+            <div>
+                <h2>Bộ sưu tập</h2>
+                <p class="product-count muted" id="productCountLabel">Đang tải sản phẩm...</p>
+            </div>
+            <div class="main-header-actions">
+                <button type="button" class="btn-ghost btn-sm" id="toggleFilterBtn" aria-expanded="true">
+                    <i class="fas fa-sliders"></i> Bộ lọc
+                </button>
+                <div class="sort-box">
+                    <select id="sortSelect" aria-label="Sắp xếp sản phẩm">
+                        <option value="newest">Mới nhất</option>
+                        <option value="best-seller">Bán chạy</option>
+                        <option value="price-asc">Giá tăng dần</option>
+                        <option value="price-desc">Giá giảm dần</option>
+                        <option value="name-asc">Tên A–Z</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <div class="shop-layout">
+            <aside class="filter-sidebar" id="filterSidebar" aria-label="Bộ lọc sản phẩm">
+                <div class="filter-group">
+                    <h3>Giới tính</h3>
+                    <div class="filter-chips" id="filterGender">
+                        <button type="button" class="filter-chip active" data-gender="">Tất cả</button>
+                        <button type="button" class="filter-chip" data-gender="nam">Nam</button>
+                        <button type="button" class="filter-chip" data-gender="nu">Nữ</button>
+                        <button type="button" class="filter-chip" data-gender="unisex">Unisex</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Size</h3>
+                    <div class="filter-chips" id="filterSize"></div>
+                </div>
+                <div class="filter-group">
+                    <h3>Màu sắc</h3>
+                    <div class="filter-chips" id="filterColor"></div>
+                </div>
+                <div class="filter-group">
+                    <h3>Khoảng giá</h3>
+                    <div class="filter-price">
+                        <label>
+                            <span>Từ</span>
+                            <input type="number" id="filterPriceMin" min="0" step="50000" placeholder="0">
+                        </label>
+                        <label>
+                            <span>Đến</span>
+                            <input type="number" id="filterPriceMax" min="0" step="50000" placeholder="2.000.000">
+                        </label>
+                    </div>
+                    <div class="filter-price-presets">
+                        <button type="button" class="filter-chip" data-price="0-200000">Dưới 200k</button>
+                        <button type="button" class="filter-chip" data-price="200000-500000">200k–500k</button>
+                        <button type="button" class="filter-chip" data-price="500000-1000000">500k–1tr</button>
+                        <button type="button" class="filter-chip" data-price="1000000-">Trên 1tr</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-ghost btn-block btn-sm" id="resetFilterBtn">
+                    <i class="fas fa-rotate-left"></i> Xóa bộ lọc
+                </button>
+            </aside>
+
+            <section class="shop-results">
+                <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+                <section id="productGrid" class="product-grid" aria-live="polite" aria-label="Danh sách sản phẩm"></section>
+            </section>
+        </div>
+    </main>
+
+    <!-- Cart drawer -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <aside id="cartDrawer" class="cart-drawer">
+        <header class="cart-header">
+            <h3>Giỏ hàng</h3>
+            <button id="cartClose" class="icon-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </header>
+        <section id="cartItems" class="cart-items">
+            <!-- JS render item -->
+        </section>
+        <footer class="cart-footer">
+            <div class="cart-row">
+                <span>Tạm tính</span>
+                <span id="cartSubtotal">0 đ</span>
+            </div>
+            <div class="cart-row">
+                <span>Phí ship (ước tính)</span>
+                <span>30.000 đ</span>
+            </div>
+            <div class="cart-row total">
+                <span>Tổng cộng</span>
+                <span id="cartTotal">0 đ</span>
+            </div>
+            <button id="checkoutBtn" class="btn btn-primary btn-block">
+                <i class="fas fa-credit-card"></i> Đặt hàng
+            </button>
+        </footer>
+    </aside>
+
+    <!-- Auth / Profile modal -->
+    <div id="authModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">Đăng nhập</h3>
+                <button class="icon-btn" id="authModalClose" aria-label="Đóng">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" class="form">
+                    <div class="form-group">
+                        <label>Số điện thoại / Tài khoản</label>
+                        <input id="loginUsername" type="text" placeholder="Nhập số điện thoại hoặc tài khoản" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input id="loginPassword" type="password" placeholder="Nhập mật khẩu" required>
+                        <p class="form-row-link">
+                            <button type="button" class="link-btn" id="openForgotLink">Quên mật khẩu?</button>
+                        </p>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">
+                        <i class="fas fa-right-to-bracket"></i> Đăng nhập
+                    </button>
+                    <button class="btn btn-ghost btn-block" type="button" id="openRegisterBtn">
+                        <i class="fas fa-user-plus"></i> Tạo tài khoản mới
+                    </button>
+                    <button class="btn btn-ghost btn-block" type="button" id="openForgotBtn">
+                        <i class="fas fa-key"></i> Quên mật khẩu
+                    </button>
+                </form>
+
+                <form id="registerForm" class="form hidden">
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input id="rgFullName" type="text" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input id="rgPhone" type="tel" placeholder="090xxxxxxx" required autocomplete="tel">
+                        <p id="rgPhoneHint" class="field-check-hint" aria-live="polite"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Tên đăng nhập</label>
+                        <input id="rgUsername" type="text" placeholder="Nhập tên đăng nhập" required autocomplete="username">
+                        <p id="rgUsernameHint" class="field-check-hint" aria-live="polite"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email (không bắt buộc)</label>
+                        <input id="rgEmail" type="email" placeholder="you@email.com" autocomplete="email">
+                        <p id="rgEmailHint" class="field-check-hint" aria-live="polite"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ (không bắt buộc)</label>
+                        <input id="rgAddress" type="text" placeholder="Số nhà, đường, quận...">
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input id="rgPassword" type="password" placeholder="Tối thiểu 6 ký tự" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">
+                        <i class="fas fa-user-plus"></i> Đăng ký
+                    </button>
+                    <button class="btn btn-ghost btn-block" type="button" id="backToLoginBtn">
+                        <i class="fas fa-arrow-left"></i> Quay lại đăng nhập
+                    </button>
+                </form>
+
+                <form id="forgotForm" class="form hidden" novalidate>
+                    <div id="forgotStep1">
+                        <p class="form-hint">Nhập tài khoản hoặc SĐT đã đăng ký. Nếu server đã cấu hình gửi mail (Mailtrap/Gmail), mã gửi tới <strong>email trong hồ sơ</strong>. Chưa cấu hình thì mã hiện trên màn hình bước sau.</p>
+                        <div class="form-group">
+                            <label>Tài khoản / Email / Số điện thoại</label>
+                            <input id="fpIdentifier" type="text" placeholder="VD: 0900000000 hoặc tên đăng nhập" required>
+                        </div>
+                        <p id="fpStatus" class="fp-status hidden" role="status"></p>
+                        <button class="btn btn-primary btn-block" type="submit" id="fpSendBtn">
+                            <i class="fas fa-paper-plane"></i> <span id="fpSendBtnText">Gửi mã đặt lại</span>
+                        </button>
+                    </div>
+
+                    <div id="forgotStep2" class="hidden">
+                        <p class="form-hint" id="forgotMessage"></p>
+                        <div id="fpTokenBox" class="token-box hidden">
+                            <label>Mã đặt lại mật khẩu</label>
+                            <div class="token-box-row">
+                                <input id="fpTokenDisplay" type="text" readonly>
+                                <button type="button" class="btn btn-ghost" id="fpCopyTokenBtn" title="Sao chép mã">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p class="form-hint muted">Mã có hiệu lực 15 phút.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã 6 số từ email</label>
+                            <input id="fpToken" type="text" placeholder="VD: 123456" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu mới</label>
+                            <input id="fpNewPassword" type="password" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password">
+                        </div>
+                        <button class="btn btn-primary btn-block" type="button" id="fpResetBtn">
+                            <i class="fas fa-rotate-right"></i> Đặt lại mật khẩu
+                        </button>
+                        <button class="btn btn-ghost btn-block" type="button" id="fpBackStepBtn">
+                            <i class="fas fa-arrow-left"></i> Gửi lại mã khác
+                        </button>
+                    </div>
+
+                    <button class="btn btn-ghost btn-block" type="button" id="backToLoginFromForgotBtn">
+                        <i class="fas fa-arrow-left"></i> Quay lại đăng nhập
+                    </button>
+                </form>
+
+                <div id="profileBox" class="profile-box hidden">
+                    <div class="profile-head">
+                        <div class="avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="profile-name" id="profileName">-</div>
+                            <div class="muted" id="profilePhone">-</div>
+                        </div>
+                    </div>
+
+                    <div id="myOrdersBox" class="my-orders-box">
+                        <h4>Đơn hàng của tôi</h4>
+                        <div id="myOrdersList" class="my-orders-list muted">Chưa có đơn hàng.</div>
+                    </div>
+
+                    <form id="profileForm" class="form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Họ và tên</label>
+                                <input id="pfFullName" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input id="pfPhone" type="tel" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input id="pfEmail" type="email">
+                            </div>
+                            <div class="form-group">
+                                <label>Địa chỉ</label>
+                                <input id="pfAddress" type="text">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">
+                            <i class="fas fa-floppy-disk"></i> Lưu thông tin
+                        </button>
+                        <button class="btn btn-ghost btn-block" type="button" id="logoutBtn">
+                            <i class="fas fa-right-from-bracket"></i> Đăng xuất
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product detail modal -->
+    <div id="productModal" class="modal" aria-hidden="true">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Chi tiết sản phẩm</h3>
+                <button class="icon-btn" id="productModalClose" aria-label="Đóng">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="product-detail">
+                    <div>
+                        <img id="pdImage" class="pd-image" alt="Ảnh sản phẩm">
+                        <div class="pd-features">
+                            <div><i class="fas fa-truck-fast"></i> Giao 2–5 ngày</div>
+                            <div><i class="fas fa-rotate-left"></i> Đổi trả 7 ngày</div>
+                            <div><i class="fas fa-shield-halved"></i> Bảo hành 30 ngày</div>
+                        </div>
+                    </div>
+                    <div class="pd-body">
+                        <div class="pd-title" id="pdName">-</div>
+                        <div class="pd-meta" id="pdMeta">-</div>
+                        <div class="pd-price-row">
+                            <span class="pd-price" id="pdPrice">-</span>
+                            <span class="pd-price-old hidden" id="pdPriceOld"></span>
+                            <span class="pd-discount-badge hidden" id="pdDiscountBadge"></span>
+                        </div>
+
+                        <div class="pd-attrs">
+                            <div class="attr">
+                                <div class="attr-label">Màu</div>
+                                <div class="attr-value">
+                                    <select id="pdColor"></select>
+                                </div>
+                            </div>
+                            <div class="attr">
+                                <div class="attr-label">Size</div>
+                                <div class="attr-value">
+                                    <select id="pdSize"></select>
+                                </div>
+                                <div class="muted" id="pdStockNote"></div>
+                            </div>
+                        </div>
+
+                        <div class="pd-actions">
+                            <button class="btn btn-primary" id="pdAddToCartBtn" type="button">
+                                <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                            <button class="btn btn-ghost pd-wishlist-btn" id="pdWishlistBtn" type="button" aria-pressed="false">
+                                <i class="fas fa-heart"></i> <span id="pdWishlistText">Yêu thích</span>
+                            </button>
+                        </div>
+
+                        <div class="pd-tabs" role="tablist">
+                            <button type="button" class="pd-tab active" data-tab="desc" role="tab" aria-selected="true">Mô tả</button>
+                            <button type="button" class="pd-tab" data-tab="spec" role="tab">Thông tin chi tiết</button>
+                            <button type="button" class="pd-tab" data-tab="warranty" role="tab">Bảo hành</button>
+                        </div>
+
+                        <div class="pd-tab-panels">
+                            <div class="pd-panel active" data-panel="desc" role="tabpanel">
+                                <p id="pdDescription">-</p>
+                                <ul class="pd-bullet">
+                                    <li>Chất liệu cao cấp, mềm mại, thoáng khí.</li>
+                                    <li>Form chuẩn người Việt, đường may chắc chắn.</li>
+                                    <li>Dễ phối với nhiều phong cách hằng ngày.</li>
+                                </ul>
+                            </div>
+                            <div class="pd-panel" data-panel="spec" role="tabpanel">
+                                <table class="pd-spec-table">
+                                    <tbody id="pdSpecTableBody"></tbody>
+                                </table>
+                            </div>
+                            <div class="pd-panel" data-panel="warranty" role="tabpanel">
+                                <div class="warranty-card">
+                                    <h4><i class="fas fa-shield-halved"></i> Chính sách bảo hành</h4>
+                                    <ul>
+                                        <li><strong>Đổi trả miễn phí trong 7 ngày</strong> nếu sản phẩm lỗi từ nhà sản xuất hoặc giao sai mẫu / size.</li>
+                                        <li><strong>Bảo hành đường may 30 ngày</strong> — sửa miễn phí lỗi bung chỉ, đứt khuy ở showroom IS207.</li>
+                                        <li>Hỗ trợ vệ sinh chuyên sâu lần đầu trong 14 ngày kể từ ngày mua.</li>
+                                        <li>Không áp dụng với sản phẩm bị hư do sử dụng sai cách hoặc đã giặt máy không đúng hướng dẫn.</li>
+                                    </ul>
+                                    <p class="muted">Liên hệ <strong>1900 1207</strong> hoặc <strong>support@is207.shop</strong> để yêu cầu bảo hành.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist drawer -->
+    <div id="wishlistOverlay" class="cart-overlay"></div>
+    <aside id="wishlistDrawer" class="cart-drawer">
+        <header class="cart-header">
+            <h3><i class="fas fa-heart"></i> Yêu thích</h3>
+            <button id="wishlistClose" class="icon-btn" aria-label="Đóng">
+                <i class="fas fa-times"></i>
+            </button>
+        </header>
+        <section id="wishlistItems" class="cart-items wishlist-items"></section>
+        <footer class="cart-footer">
+            <button id="wishlistViewAllBtn" class="btn btn-ghost btn-block" type="button">
+                <i class="fas fa-arrow-right"></i> Tiếp tục mua sắm
+            </button>
+        </footer>
+    </aside>
+
+    <!-- Checkout modal (full screen) -->
+    <div id="checkoutModal" class="modal modal-fullscreen" aria-hidden="true">
+        <div class="modal-content modal-checkout">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Đặt hàng</h3>
+                <button class="icon-btn" id="checkoutClose" aria-label="Đóng">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-layout">
+                    <div class="checkout-main">
+                        <section class="checkout-section">
+                            <h4><i class="fas fa-truck"></i> Thông tin giao hàng</h4>
+                            <form id="checkoutForm" class="form" novalidate>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Họ và tên *</label>
+                                        <input id="ckName" type="text" placeholder="Nguyễn Văn A" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại *</label>
+                                        <input id="ckPhone" type="tel" placeholder="090xxxxxxx" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ giao hàng *</label>
+                                    <input id="ckAddress" type="text" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ghi chú (không bắt buộc)</label>
+                                    <input id="ckNote" type="text" placeholder="Yêu cầu thêm cho shop...">
+                                </div>
+                            </form>
+                        </section>
+
+                        <section class="checkout-section">
+                            <h4><i class="fas fa-list"></i> Sản phẩm đã đặt</h4>
+                            <div id="checkoutItemsList" class="checkout-items"></div>
+                        </section>
+
+                        <section class="checkout-section">
+                            <h4><i class="fas fa-tag"></i> Mã ưu đãi</h4>
+                            <div class="coupon-row">
+                                <input id="couponInput" type="text" placeholder="VD: IS207, FREESHIP, WELCOME50" autocomplete="off">
+                                <button type="button" class="btn btn-ghost btn-sm" id="applyCouponBtn">Áp dụng</button>
+                            </div>
+                            <p id="couponHint" class="muted">Mẹo: nhập <code>IS207</code> để giảm 10%, <code>FREESHIP</code> để miễn phí ship.</p>
+                        </section>
+
+                        <section class="checkout-section">
+                            <h4><i class="fas fa-wallet"></i> Phương thức thanh toán</h4>
+                            <div class="payment-options" id="paymentOptions">
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="cod" checked>
+                                    <span class="payment-card-body">
+                                        <strong><i class="fas fa-money-bill-wave"></i> Thanh toán khi giao hàng (COD)</strong>
+                                        <small>Nhận hàng và kiểm tra trước khi trả tiền cho shipper.</small>
+                                    </span>
+                                </label>
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="bank">
+                                    <span class="payment-card-body">
+                                        <strong><i class="fas fa-building-columns"></i> Chuyển khoản ngân hàng</strong>
+                                        <small>Quét VietQR hoặc chuyển khoản trực tiếp.</small>
+                                    </span>
+                                </label>
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="momo">
+                                    <span class="payment-card-body">
+                                        <strong><i class="fas fa-mobile-screen"></i> Ví Momo</strong>
+                                        <small>Quét mã QR Momo, thanh toán trong giây lát.</small>
+                                    </span>
+                                </label>
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="zalopay">
+                                    <span class="payment-card-body">
+                                        <strong><i class="fas fa-z"></i> Ví ZaloPay</strong>
+                                        <small>Thanh toán nhanh bằng ứng dụng ZaloPay.</small>
+                                    </span>
+                                </label>
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="card">
+                                    <span class="payment-card-body">
+                                        <strong><i class="fas fa-credit-card"></i> Thẻ ngân hàng (ATM/Visa)</strong>
+                                        <small>Trang thanh toán bảo mật của ngân hàng.</small>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div id="paymentDetail" class="payment-detail">
+                                <!-- JS render QR + hướng dẫn -->
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="checkout-summary">
+                        <h4>Tóm tắt đơn hàng</h4>
+                        <div class="summary-row"><span>Tạm tính</span><span id="ckSubtotal">0 đ</span></div>
+                        <div class="summary-row"><span>Phí vận chuyển</span><span id="ckShipping">30.000 đ</span></div>
+                        <div class="summary-row summary-row--discount hidden" id="ckDiscountRow"><span>Giảm giá</span><span id="ckDiscount">0 đ</span></div>
+                        <div class="summary-row summary-total"><span>Tổng cộng</span><span id="ckTotal">0 đ</span></div>
+                        <button type="button" class="btn btn-primary btn-block" id="ckPlaceOrderBtn">
+                            <i class="fas fa-check"></i> <span id="ckPlaceOrderText">Đặt hàng</span>
+                        </button>
+                        <p class="muted checkout-policy-hint">
+                            Bằng việc đặt hàng, bạn đồng ý với <button type="button" class="link-btn" data-info-target="policy-purchase">Chính sách mua hàng</button> và <button type="button" class="link-btn" data-info-target="terms">Điều khoản sử dụng</button>.
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info / policies modal -->
+    <div id="infoModal" class="modal modal-fullscreen" aria-hidden="true">
+        <div class="modal-content modal-checkout">
+            <div class="modal-header">
+                <h3 id="infoModalTitle"><i class="fas fa-circle-info"></i> Thông tin</h3>
+                <button class="icon-btn" id="infoClose" aria-label="Đóng">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="info-layout">
+                    <nav class="info-nav" id="infoNav" aria-label="Danh mục thông tin">
+                        <button class="info-nav-btn active" type="button" data-info="about">Giới thiệu doanh nghiệp</button>
+                        <button class="info-nav-btn" type="button" data-info="contact">Liên hệ</button>
+                        <button class="info-nav-btn" type="button" data-info="guide">Hướng dẫn mua hàng</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-purchase">Chính sách mua hàng</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-payment">Chính sách thanh toán</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-shipping">Chính sách vận chuyển</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-return">Chính sách đổi trả</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-privacy">Bảo mật thông tin</button>
+                        <button class="info-nav-btn" type="button" data-info="policy-warranty">Chính sách bảo hành</button>
+                        <button class="info-nav-btn" type="button" data-info="terms">Điều khoản sử dụng</button>
+                    </nav>
+                    <article class="info-content" id="infoContent" aria-live="polite"></article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button type="button" class="chat-launcher" id="chatLauncher" aria-label="Mở hộp chat">
+            <i class="fas fa-comments"></i>
+            <span>Liên hệ</span>
+        </button>
+        <div class="chat-panel" id="chatPanel" aria-hidden="true">
+            <header class="chat-head">
+                <div class="chat-head-info">
+                    <div class="chat-avatar"><i class="fas fa-headset"></i></div>
+                    <div>
+                        <strong>IS207 Fashion</strong>
+                        <small><span class="online-dot"></span> Đang trực tuyến</small>
+                    </div>
+                </div>
+                <button type="button" id="chatClose" class="icon-btn" aria-label="Đóng">
+                    <i class="fas fa-times"></i>
+                </button>
+            </header>
+            <div class="chat-body" id="chatBody" role="log" aria-live="polite"></div>
+            <div class="chat-quick" id="chatQuick">
+                <button type="button" data-quick="Còn hàng size M không shop?">Còn hàng size M không?</button>
+                <button type="button" data-quick="Phí ship bao nhiêu?">Phí ship?</button>
+                <button type="button" data-quick="Có đổi trả không?">Đổi trả?</button>
+                <button type="button" data-quick="Bao lâu giao đến?">Thời gian giao?</button>
+            </div>
+            <form class="chat-form" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." autocomplete="off">
+                <button type="submit" class="icon-btn" aria-label="Gửi"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="brand-name">IS207 Fashion</span>
+                    <p>Thương hiệu thời trang dành cho giới trẻ. Cam kết chất lượng — đổi trả dễ dàng — vận chuyển toàn quốc.</p>
+                    <p class="footer-contact">
+                        <i class="fas fa-phone"></i> 1900 1207<br>
+                        <i class="fas fa-envelope"></i> support@is207.shop
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Mua sắm</h4>
+                    <ul>
+                        <li><a href="#" data-footer-cat="ao">Áo</a></li>
+                        <li><a href="#" data-footer-cat="quan">Quần</a></li>
+                        <li><a href="#" data-footer-cat="vay">Váy</a></li>
+                        <li><a href="#" data-footer-cat="ao-khoac">Áo khoác</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><button type="button" class="footer-link" data-info-target="guide">Hướng dẫn mua hàng</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="policy-payment">Chính sách thanh toán</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="policy-shipping">Chính sách vận chuyển</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="policy-return">Chính sách đổi trả</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="policy-warranty">Chính sách bảo hành</button></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><button type="button" class="footer-link" data-info-target="about">Giới thiệu</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="contact">Liên hệ</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="policy-privacy">Bảo mật thông tin</button></li>
+                        <li><button type="button" class="footer-link" data-info-target="terms">Điều khoản sử dụng</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 IS207 Fashion — Mã số doanh nghiệp: 0312345678 (giả định).</div>
+        </div>
+    </footer>
+
+    <!-- 3-D Secure OTP modal (mô phỏng cổng thanh toán thẻ) -->
+    <div id="card3dsModal" class="modal" aria-hidden="true">
+        <div class="modal-content otp-modal">
+            <div class="modal-header otp-header">
+                <div class="otp-bank">
+                    <div class="otp-bank-logo"><i class="fas fa-shield-halved"></i></div>
+                    <div>
+                        <strong id="otpBankName">IS207 Secure Pay</strong>
+                        <p class="muted">3-D Secure · Xác thực thẻ</p>
+                    </div>
+                </div>
+                <button class="icon-btn" id="otpClose" aria-label="Hủy">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body otp-body">
+                <div class="otp-tx-info">
+                    <div><span>Số thẻ</span><strong id="otpMaskedCard">**** **** **** ****</strong></div>
+                    <div><span>Số tiền</span><strong id="otpAmount">0 đ</strong></div>
+                    <div><span>Đơn vị nhận</span><strong>IS207 FASHION</strong></div>
+                </div>
+                <p class="otp-instruction">
+                    Mã OTP đã được gửi tới số điện thoại <strong id="otpPhoneMask">**** **** **</strong>.
+                    Nhập mã 6 số để xác nhận giao dịch.
+                </p>
+                <div class="otp-inputs" id="otpInputs">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                    <input type="text" inputmode="numeric" maxlength="1" autocomplete="off">
+                </div>
+                <p class="otp-timer">Mã có hiệu lực trong <strong id="otpCountdown">02:00</strong></p>
+                <div class="otp-actions">
+                    <button type="button" class="btn btn-secondary" id="otpCancelBtn">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="otpConfirmBtn" disabled>
+                        <i class="fas fa-check"></i> Xác nhận
+                    </button>
+                </div>
+                <p class="otp-hint muted">
+                    <i class="fas fa-circle-info"></i>
+                    Đây là giao dịch <strong>mô phỏng</strong> phục vụ demo. Nhập bất kỳ 6 chữ số để hoàn tất.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

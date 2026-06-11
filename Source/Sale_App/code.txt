@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  xmlns:modeler="http://camunda.org/schema/modeler/1.0"
+  id="Definitions_Winmart_Online_Order"
+  targetNamespace="http://winmart.example/bpmn"
+  exporter="Camunda Modeler"
+  exporterVersion="5.46.1"
+  modeler:executionPlatform="Camunda Platform"
+  modeler:executionPlatformVersion="7.19.0">
+
+  <bpmn:process id="Process_Winmart_Online_Order" name="Quy trình xử lý đơn hàng online Winmart (tối ưu)" isExecutable="true">
+
+    <!-- Swimlanes (theo sơ đồ) -->
+    <bpmn:laneSet id="LaneSet_Winmart">
+      <bpmn:lane id="Lane_Customer" name="Khách hàng">
+        <bpmn:flowNodeRef>StartEvent_Order</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_WaitCustomerConfirm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_CustomerAcceptSubstitution</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_System" name="Hệ thống OMS/POS/App">
+        <bpmn:flowNodeRef>Task_ApiCreateOrder</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiCheckInventory</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiProcessPayment</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SystemNotify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_StockPaymentOk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiUpdateSubstitution</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiCancelRefund_Timeout</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiCancelRefund_CustomerNo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiCancelRefund_Approval</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiPackOrder</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiDispatch</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ApiCompleteOrder</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SendEmail</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Store" name="Kho/Cửa hàng">
+        <bpmn:flowNodeRef>Task_ScriptCreatePickingJob</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UserPicking</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_BotScanBarcode</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_ItemsEnough</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ScriptRetryInc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_RetryUnder3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ScriptRetryReset</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_QualityOk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ScriptReplacementAttemptInc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_ReplacementUnder3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_BotQualityChecklist</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Delivery" name="Vận chuyển">
+        <bpmn:flowNodeRef>Task_BotTrackShipping</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_ShippingOk</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Approver" name="Người duyệt / Ngoại lệ">
+        <bpmn:flowNodeRef>Task_UserApprovalException</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gw_ApprovalDecision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ScriptOtherHandling</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Bot" name="BOT">
+        <bpmn:flowNodeRef>Task_BotNotifyOutOfStock</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_BotSendOtpLink</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+
+    <bpmn:startEvent id="StartEvent_Order" name="Start">
+      <bpmn:outgoing>Flow_01</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <bpmn:serviceTask id="Task_ApiCreateOrder" name="API: Tạo đơn hàng (App/Web)" camunda:type="external" camunda:topic="api.createOrder">
+      <bpmn:incoming>Flow_01</bpmn:incoming>
+      <bpmn:outgoing>Flow_02</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <!-- API: Tồn kho -->
+    <bpmn:serviceTask id="Task_ApiCheckInventory" name="API: Kiểm tra tồn kho" camunda:type="external" camunda:topic="api.checkInventory">
+      <bpmn:incoming>Flow_02</bpmn:incoming>
+      <bpmn:outgoing>Flow_Inv_To_Payment</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <!-- API: Thanh toán -->
+    <bpmn:serviceTask id="Task_ApiProcessPayment" name="API: Xử lý thanh toán" camunda:type="external" camunda:topic="api.processPayment">
+      <bpmn:incoming>Flow_Inv_To_Payment</bpmn:incoming>
+      <bpmn:outgoing>Flow_Payment_To_NotifySystem</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <!-- Thông báo hệ thống (admin/app) -->
+    <bpmn:serviceTask id="Task_SystemNotify" name="Thông báo hệ thống (Admin/App)" camunda:type="external" camunda:topic="notify.system">
+      <bpmn:incoming>Flow_Payment_To_NotifySystem</bpmn:incoming>
+      <bpmn:outgoing>Flow_03</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway id="Gw_StockPaymentOk" name="Đủ tồn kho &amp; thanh toán?">
+      <bpmn:incoming>Flow_03</bpmn:incoming>
+      <bpmn:outgoing>Flow_NoStock</bpmn:outgoing>
+      <bpmn:outgoing>Flow_StockOk</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:serviceTask id="Task_BotNotifyOutOfStock" name="BOT: Thông báo hết hàng + đề xuất thay thế" camunda:type="external" camunda:topic="bot.notifyOutOfStockAndSuggestSubstitution">
+      <bpmn:incoming>Flow_NoStock</bpmn:incoming>
+      <bpmn:outgoing>Flow_WaitCustomer</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <!-- BOT: Gửi OTP/Link để khách xác nhận (theo sơ đồ) -->
+    <bpmn:serviceTask id="Task_BotSendOtpLink" name="BOT: Gửi OTP/Link xác nhận" camunda:type="external" camunda:topic="bot.sendOtpOrLinkConfirm">
+      <bpmn:incoming>Flow_WaitCustomer</bpmn:incoming>
+      <bpmn:outgoing>Flow_OtpLinkSent</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:receiveTask id="Task_WaitCustomerConfirm" name="User: Khách xác nhận thay thế (OTP/Link)" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_OtpLinkSent</bpmn:incoming>
+      <bpmn:outgoing>Flow_CustomerDecision</bpmn:outgoing>
+    </bpmn:receiveTask>
+
+    <bpmn:boundaryEvent id="Timer_15m_CustomerConfirm" name="Timer: Chờ phản hồi 15 phút" attachedToRef="Task_WaitCustomerConfirm" cancelActivity="true">
+      <bpmn:outgoing>Flow_TimeoutCancel</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration>PT15M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+
+    <bpmn:serviceTask id="Task_ApiCancelRefund_Timeout" name="API: Hủy đơn / hoàn tiền" camunda:type="external" camunda:topic="api.cancelAndRefund">
+      <bpmn:incoming>Flow_TimeoutCancel</bpmn:incoming>
+      <bpmn:outgoing>Flow_EndCanceled1</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent id="EndEvent_Canceled_Timeout" name="Đơn hủy">
+      <bpmn:incoming>Flow_EndCanceled1</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:exclusiveGateway id="Gw_CustomerAcceptSubstitution" name="Đồng ý thay thế?">
+      <bpmn:incoming>Flow_CustomerDecision</bpmn:incoming>
+      <bpmn:outgoing>Flow_CustomerYes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_CustomerNo</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:serviceTask id="Task_ApiUpdateSubstitution" name="API: Cập nhật đơn thay thế" camunda:type="external" camunda:topic="api.updateSubstitution">
+      <bpmn:incoming>Flow_CustomerYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_AfterSubstitutionUpdate</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask id="Task_ApiCancelRefund_CustomerNo" name="API: Hủy đơn / hoàn tiền" camunda:type="external" camunda:topic="api.cancelAndRefund">
+      <bpmn:incoming>Flow_CustomerNo</bpmn:incoming>
+      <bpmn:outgoing>Flow_EndCanceled2</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent id="EndEvent_Canceled_CustomerNo" name="Đơn hủy">
+      <bpmn:incoming>Flow_EndCanceled2</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:scriptTask id="Task_ScriptCreatePickingJob" name="JS: Tự động tạo nhiệm vụ tới kho hàng" scriptFormat="javascript" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_StockOk</bpmn:incoming>
+      <bpmn:incoming>Flow_AfterSubstitutionUpdate</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToPick</bpmn:outgoing>
+      <bpmn:script><![CDATA[
+        execution.setVariable("retryCount", execution.getVariable("retryCount") || 0);
+        execution.setVariable("replacementAttempt", execution.getVariable("replacementAttempt") || 0);
+        if (!execution.getVariable("pickingJobId")) execution.setVariable("pickingJobId", "PICK-" + (execution.getVariable("orderId") || "UNKNOWN"));
+      ]]></bpmn:script>
+    </bpmn:scriptTask>
+
+    <bpmn:userTask id="Task_UserPicking" name="User: NV Picking lấy hàng" camunda:candidateGroups="store-pickers">
+      <bpmn:incoming>Flow_ToPick</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToScan</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask id="Task_BotScanBarcode" name="BOT: Scan barcode xác nhận" camunda:type="external" camunda:topic="bot.scanBarcodeConfirm">
+      <bpmn:incoming>Flow_ToScan</bpmn:incoming>
+      <bpmn:outgoing>Flow_CheckEnoughItems</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway id="Gw_ItemsEnough" name="Đủ hàng &amp; đủ số lượng?">
+      <bpmn:incoming>Flow_CheckEnoughItems</bpmn:incoming>
+      <bpmn:outgoing>Flow_ItemsNo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ItemsYes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:scriptTask id="Task_ScriptRetryInc" name="JS: retryCount++" scriptFormat="javascript">
+      <bpmn:incoming>Flow_ItemsNo</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToRetryGateway</bpmn:outgoing>
+      <bpmn:script><![CDATA[
+        var c = execution.getVariable("retryCount") || 0;
+        c = c + 1;
+        execution.setVariable("retryCount", c);
+      ]]></bpmn:script>
+    </bpmn:scriptTask>
+
+    <bpmn:exclusiveGateway id="Gw_RetryUnder3" name="retryCount &lt; 3 ?">
+      <bpmn:incoming>Flow_ToRetryGateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_RetryLoop</bpmn:outgoing>
+      <bpmn:outgoing>Flow_EscalateApproval</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:sequenceFlow id="Flow_RetryLoop" sourceRef="Gw_RetryUnder3" targetRef="Task_BotScanBarcode" name="Có (thử lại)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${retryCount < 3}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:userTask id="Task_UserApprovalException" name="User: Phê duyệt xử lý ngoại lệ" camunda:candidateGroups="approvers">
+      <bpmn:incoming>Flow_EscalateApproval</bpmn:incoming>
+      <bpmn:outgoing>Flow_AfterApprovalDecision</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:exclusiveGateway id="Gw_ApprovalDecision" name="Chọn xử lý">
+      <bpmn:incoming>Flow_AfterApprovalDecision</bpmn:incoming>
+      <bpmn:outgoing>Flow_ApprovalTryPickAgain</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ApprovalSubstitution</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ApprovalCancelRefund</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ApprovalOtherHandle</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:sequenceFlow id="Flow_ApprovalTryPickAgain" sourceRef="Gw_ApprovalDecision" targetRef="Task_BotScanBarcode" name="1. Thử lại (retry picking)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${approvalAction == 'RETRY'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ApprovalSubstitution" sourceRef="Gw_ApprovalDecision" targetRef="Task_BotNotifyOutOfStock" name="2. Thay thế sản phẩm khác">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${approvalAction == 'SUBSTITUTE'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:serviceTask id="Task_ApiCancelRefund_Approval" name="API: Hủy đơn / hoàn tiền" camunda:type="external" camunda:topic="api.cancelAndRefund">
+      <bpmn:incoming>Flow_ApprovalCancelRefund</bpmn:incoming>
+      <bpmn:outgoing>Flow_EndCanceled3</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent id="EndEvent_Canceled_Approval" name="Kết thúc xử lý ngoại lệ">
+      <bpmn:incoming>Flow_EndCanceled3</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:scriptTask id="Task_ScriptOtherHandling" name="JS: Ghi log &amp; cập nhật kết quả xử lý" scriptFormat="javascript" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_ApprovalOtherHandle</bpmn:incoming>
+      <bpmn:outgoing>Flow_EndOtherHandle</bpmn:outgoing>
+      <bpmn:script><![CDATA[
+        execution.setVariable("exceptionHandled", true);
+      ]]></bpmn:script>
+    </bpmn:scriptTask>
+
+    <bpmn:endEvent id="EndEvent_OtherHandle" name="Kết thúc xử lý ngoại lệ">
+      <bpmn:incoming>Flow_EndOtherHandle</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:scriptTask id="Task_ScriptRetryReset" name="JS: Reset retryCount" scriptFormat="javascript">
+      <bpmn:incoming>Flow_ItemsYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToQualityGateway</bpmn:outgoing>
+      <bpmn:script><![CDATA[
+        execution.setVariable("retryCount", 0);
+      ]]></bpmn:script>
+    </bpmn:scriptTask>
+
+    <bpmn:exclusiveGateway id="Gw_QualityOk" name="Đạt chất lượng?">
+      <bpmn:incoming>Flow_ToQualityGateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_QualityNo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_QualityYes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:scriptTask id="Task_ScriptReplacementAttemptInc" name="JS: replacementAttempt++" scriptFormat="javascript">
+      <bpmn:incoming>Flow_QualityNo</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToReplacementAttemptGateway</bpmn:outgoing>
+      <bpmn:script><![CDATA[
+        var a = execution.getVariable("replacementAttempt") || 0;
+        a = a + 1;
+        execution.setVariable("replacementAttempt", a);
+      ]]></bpmn:script>
+    </bpmn:scriptTask>
+
+    <bpmn:exclusiveGateway id="Gw_ReplacementUnder3" name="replacementAttempt &lt; 3 ?">
+      <bpmn:incoming>Flow_ToReplacementAttemptGateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_ReplacementTryAgain</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ReplacementEscalateApproval</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:sequenceFlow id="Flow_ReplacementTryAgain" sourceRef="Gw_ReplacementUnder3" targetRef="Task_BotNotifyOutOfStock" name="Có (đề xuất thay thế)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${replacementAttempt < 3}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ReplacementEscalateApproval" sourceRef="Gw_ReplacementUnder3" targetRef="Task_UserApprovalException" name="Không (chuyển phê duyệt)"/>
+
+    <!-- BOT/APP: Checklist chất lượng (tối ưu user task -> service task) -->
+    <bpmn:serviceTask id="Task_BotQualityChecklist" name="BOT: Đánh giá checklist chất lượng" camunda:type="external" camunda:topic="bot.qualityChecklist">
+      <bpmn:incoming>Flow_QualityYes</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToPack</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <!-- API: Đóng gói đơn -->
+    <bpmn:serviceTask id="Task_ApiPackOrder" name="API: Đóng gói đơn" camunda:type="external" camunda:topic="api.packOrder">
+      <bpmn:incoming>Flow_ToPack</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToDispatch</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask id="Task_ApiDispatch" name="API: Tạo lệnh giao hàng (Dispatch)" camunda:type="external" camunda:topic="api.createDispatch">
+      <bpmn:incoming>Flow_ToDispatch</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToShippingStatus</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask id="Task_BotTrackShipping" name="BOT: Theo dõi giao hàng / cập nhật trạng thái" camunda:type="external" camunda:topic="bot.trackShippingStatus">
+      <bpmn:incoming>Flow_ToShippingStatus</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToShippingGateway</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway id="Gw_ShippingOk" name="Giao thành công?">
+      <bpmn:incoming>Flow_ToShippingGateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_ShippingSuccess</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ShippingFailToException</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:sequenceFlow id="Flow_ShippingFailToException" sourceRef="Gw_ShippingOk" targetRef="Task_UserApprovalException" name="Không">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${shippingStatus != 'DELIVERED'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:serviceTask id="Task_ApiCompleteOrder" name="API: Cập nhật hoàn tất + gửi Email" camunda:type="external" camunda:topic="api.completeOrderAndNotify">
+      <bpmn:incoming>Flow_ShippingSuccess</bpmn:incoming>
+      <bpmn:outgoing>Flow_SendEmail</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask id="Task_SendEmail" name="Email: Gửi xác nhận (giao thành công)" camunda:type="external" camunda:topic="email.sendOrderSuccess">
+      <bpmn:incoming>Flow_SendEmail</bpmn:incoming>
+      <bpmn:outgoing>Flow_EndSuccess</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent id="EndEvent_Success" name="Đơn giao thành công">
+      <bpmn:incoming>Flow_EndSuccess</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ===== Sequence Flows ===== -->
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Order" targetRef="Task_ApiCreateOrder"/>
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_ApiCreateOrder" targetRef="Task_ApiCheckInventory"/>
+    <bpmn:sequenceFlow id="Flow_Inv_To_Payment" sourceRef="Task_ApiCheckInventory" targetRef="Task_ApiProcessPayment"/>
+    <bpmn:sequenceFlow id="Flow_Payment_To_NotifySystem" sourceRef="Task_ApiProcessPayment" targetRef="Task_SystemNotify"/>
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_SystemNotify" targetRef="Gw_StockPaymentOk"/>
+
+    <bpmn:sequenceFlow id="Flow_NoStock" sourceRef="Gw_StockPaymentOk" targetRef="Task_BotNotifyOutOfStock" name="Không">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${stockPaymentOk == false}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_StockOk" sourceRef="Gw_StockPaymentOk" targetRef="Task_ScriptCreatePickingJob" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${stockPaymentOk == true}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_WaitCustomer" sourceRef="Task_BotNotifyOutOfStock" targetRef="Task_BotSendOtpLink"/>
+    <bpmn:sequenceFlow id="Flow_OtpLinkSent" sourceRef="Task_BotSendOtpLink" targetRef="Task_WaitCustomerConfirm"/>
+    <bpmn:sequenceFlow id="Flow_CustomerDecision" sourceRef="Task_WaitCustomerConfirm" targetRef="Gw_CustomerAcceptSubstitution"/>
+    <bpmn:sequenceFlow id="Flow_TimeoutCancel" sourceRef="Timer_15m_CustomerConfirm" targetRef="Task_ApiCancelRefund_Timeout"/>
+    <bpmn:sequenceFlow id="Flow_EndCanceled1" sourceRef="Task_ApiCancelRefund_Timeout" targetRef="EndEvent_Canceled_Timeout"/>
+
+    <bpmn:sequenceFlow id="Flow_CustomerYes" sourceRef="Gw_CustomerAcceptSubstitution" targetRef="Task_ApiUpdateSubstitution" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${customerAcceptSubstitution == true}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_CustomerNo" sourceRef="Gw_CustomerAcceptSubstitution" targetRef="Task_ApiCancelRefund_CustomerNo" name="Không">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${customerAcceptSubstitution == false}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_AfterSubstitutionUpdate" sourceRef="Task_ApiUpdateSubstitution" targetRef="Task_ScriptCreatePickingJob"/>
+    <bpmn:sequenceFlow id="Flow_EndCanceled2" sourceRef="Task_ApiCancelRefund_CustomerNo" targetRef="EndEvent_Canceled_CustomerNo"/>
+
+    <bpmn:sequenceFlow id="Flow_ToPick" sourceRef="Task_ScriptCreatePickingJob" targetRef="Task_UserPicking"/>
+    <bpmn:sequenceFlow id="Flow_ToScan" sourceRef="Task_UserPicking" targetRef="Task_BotScanBarcode"/>
+
+    <bpmn:sequenceFlow id="Flow_CheckEnoughItems" sourceRef="Task_BotScanBarcode" targetRef="Gw_ItemsEnough"/>
+
+    <bpmn:sequenceFlow id="Flow_ItemsNo" sourceRef="Gw_ItemsEnough" targetRef="Task_ScriptRetryInc" name="Không">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${itemsEnough == false}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ItemsYes" sourceRef="Gw_ItemsEnough" targetRef="Task_ScriptRetryReset" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${itemsEnough == true}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ToRetryGateway" sourceRef="Task_ScriptRetryInc" targetRef="Gw_RetryUnder3"/>
+
+    <bpmn:sequenceFlow id="Flow_EscalateApproval" sourceRef="Gw_RetryUnder3" targetRef="Task_UserApprovalException" name="Không (>=3)">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${retryCount >= 3}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_AfterApprovalDecision" sourceRef="Task_UserApprovalException" targetRef="Gw_ApprovalDecision"/>
+
+    <bpmn:sequenceFlow id="Flow_ApprovalCancelRefund" sourceRef="Gw_ApprovalDecision" targetRef="Task_ApiCancelRefund_Approval" name="3. Hủy đơn / hoàn tiền">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${approvalAction == 'CANCEL_REFUND'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ApprovalOtherHandle" sourceRef="Gw_ApprovalDecision" targetRef="Task_ScriptOtherHandling" name="4. Xử lý khác">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${approvalAction == 'OTHER'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_EndCanceled3" sourceRef="Task_ApiCancelRefund_Approval" targetRef="EndEvent_Canceled_Approval"/>
+    <bpmn:sequenceFlow id="Flow_EndOtherHandle" sourceRef="Task_ScriptOtherHandling" targetRef="EndEvent_OtherHandle"/>
+
+    <bpmn:sequenceFlow id="Flow_ToQualityGateway" sourceRef="Task_ScriptRetryReset" targetRef="Gw_QualityOk"/>
+
+    <bpmn:sequenceFlow id="Flow_QualityNo" sourceRef="Gw_QualityOk" targetRef="Task_ScriptReplacementAttemptInc" name="Không">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${qualityOk == false}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_QualityYes" sourceRef="Gw_QualityOk" targetRef="Task_UserChecklist" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${qualityOk == true}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_ToReplacementAttemptGateway" sourceRef="Task_ScriptReplacementAttemptInc" targetRef="Gw_ReplacementUnder3"/>
+
+    <bpmn:sequenceFlow id="Flow_ToPack" sourceRef="Task_BotQualityChecklist" targetRef="Task_ApiPackOrder"/>
+    <bpmn:sequenceFlow id="Flow_ToDispatch" sourceRef="Task_ApiPackOrder" targetRef="Task_ApiDispatch"/>
+    <bpmn:sequenceFlow id="Flow_ToShippingStatus" sourceRef="Task_ApiDispatch" targetRef="Task_BotTrackShipping"/>
+    <bpmn:sequenceFlow id="Flow_ToShippingGateway" sourceRef="Task_BotTrackShipping" targetRef="Gw_ShippingOk"/>
+
+    <bpmn:sequenceFlow id="Flow_ShippingSuccess" sourceRef="Gw_ShippingOk" targetRef="Task_ApiCompleteOrder" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${shippingStatus == 'DELIVERED'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+
+    <bpmn:sequenceFlow id="Flow_SendEmail" sourceRef="Task_ApiCompleteOrder" targetRef="Task_SendEmail"/>
+    <bpmn:sequenceFlow id="Flow_EndSuccess" sourceRef="Task_SendEmail" targetRef="EndEvent_Success"/>
+
+  </bpmn:process>
+
+  <!-- ===== DI (để Camunda Modeler hiển thị được) ===== -->
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Winmart_Optimized">
+    <bpmndi:BPMNPlane id="BPMNPlane_Winmart_Optimized" bpmnElement="Process_Winmart_Online_Order">
+
+      <!-- Shapes -->
+      <bpmndi:BPMNShape id="DI_StartEvent_Order" bpmnElement="StartEvent_Order">
+        <dc:Bounds x="120" y="140" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCreateOrder" bpmnElement="Task_ApiCreateOrder">
+        <dc:Bounds x="200" y="120" width="170" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCheckInventory" bpmnElement="Task_ApiCheckInventory">
+        <dc:Bounds x="410" y="120" width="210" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiProcessPayment" bpmnElement="Task_ApiProcessPayment">
+        <dc:Bounds x="640" y="120" width="200" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_SystemNotify" bpmnElement="Task_SystemNotify">
+        <dc:Bounds x="860" y="120" width="220" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_StockPaymentOk" bpmnElement="Gw_StockPaymentOk" isMarkerVisible="true">
+        <dc:Bounds x="1110" y="135" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_BotNotifyOutOfStock" bpmnElement="Task_BotNotifyOutOfStock">
+        <dc:Bounds x="1200" y="20" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_BotSendOtpLink" bpmnElement="Task_BotSendOtpLink">
+        <dc:Bounds x="1060" y="20" width="220" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_WaitCustomerConfirm" bpmnElement="Task_WaitCustomerConfirm">
+        <dc:Bounds x="1310" y="20" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Timer_15m_CustomerConfirm" bpmnElement="Timer_15m_CustomerConfirm">
+        <dc:Bounds x="1202" y="95" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCancelRefund_Timeout" bpmnElement="Task_ApiCancelRefund_Timeout">
+        <dc:Bounds x="1080" y="150" width="240" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_EndEvent_Canceled_Timeout" bpmnElement="EndEvent_Canceled_Timeout">
+        <dc:Bounds x="1350" y="170" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_CustomerAcceptSubstitution" bpmnElement="Gw_CustomerAcceptSubstitution" isMarkerVisible="true">
+        <dc:Bounds x="1630" y="35" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiUpdateSubstitution" bpmnElement="Task_ApiUpdateSubstitution">
+        <dc:Bounds x="1720" y="20" width="240" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCancelRefund_CustomerNo" bpmnElement="Task_ApiCancelRefund_CustomerNo">
+        <dc:Bounds x="1720" y="150" width="240" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_EndEvent_Canceled_CustomerNo" bpmnElement="EndEvent_Canceled_CustomerNo">
+        <dc:Bounds x="1990" y="170" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ScriptCreatePickingJob" bpmnElement="Task_ScriptCreatePickingJob">
+        <dc:Bounds x="760" y="120" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_UserPicking" bpmnElement="Task_UserPicking">
+        <dc:Bounds x="1080" y="260" width="240" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_BotScanBarcode" bpmnElement="Task_BotScanBarcode">
+        <dc:Bounds x="1350" y="260" width="240" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_ItemsEnough" bpmnElement="Gw_ItemsEnough" isMarkerVisible="true">
+        <dc:Bounds x="1630" y="275" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ScriptRetryReset" bpmnElement="Task_ScriptRetryReset">
+        <dc:Bounds x="1715" y="260" width="190" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_QualityOk" bpmnElement="Gw_QualityOk" isMarkerVisible="true">
+        <dc:Bounds x="1940" y="270" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ScriptReplacementAttemptInc" bpmnElement="Task_ScriptReplacementAttemptInc">
+        <dc:Bounds x="2030" y="260" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_ReplacementUnder3" bpmnElement="Gw_ReplacementUnder3" isMarkerVisible="true">
+        <dc:Bounds x="2320" y="275" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_BotQualityChecklist" bpmnElement="Task_BotQualityChecklist">
+        <dc:Bounds x="2030" y="120" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiPackOrder" bpmnElement="Task_ApiPackOrder">
+        <dc:Bounds x="2320" y="220" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiDispatch" bpmnElement="Task_ApiDispatch">
+        <dc:Bounds x="2320" y="120" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_BotTrackShipping" bpmnElement="Task_BotTrackShipping">
+        <dc:Bounds x="2610" y="120" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_ShippingOk" bpmnElement="Gw_ShippingOk" isMarkerVisible="true">
+        <dc:Bounds x="2920" y="135" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCompleteOrder" bpmnElement="Task_ApiCompleteOrder">
+        <dc:Bounds x="3010" y="120" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_SendEmail" bpmnElement="Task_SendEmail">
+        <dc:Bounds x="3320" y="120" width="280" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_EndEvent_Success" bpmnElement="EndEvent_Success">
+        <dc:Bounds x="3630" y="142" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ScriptRetryInc" bpmnElement="Task_ScriptRetryInc">
+        <dc:Bounds x="1715" y="380" width="190" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_RetryUnder3" bpmnElement="Gw_RetryUnder3" isMarkerVisible="true">
+        <dc:Bounds x="1940" y="390" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_UserApprovalException" bpmnElement="Task_UserApprovalException">
+        <dc:Bounds x="2030" y="510" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Gw_ApprovalDecision" bpmnElement="Gw_ApprovalDecision" isMarkerVisible="true">
+        <dc:Bounds x="2320" y="525" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ApiCancelRefund_Approval" bpmnElement="Task_ApiCancelRefund_Approval">
+        <dc:Bounds x="2410" y="640" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_EndEvent_Canceled_Approval" bpmnElement="EndEvent_Canceled_Approval">
+        <dc:Bounds x="2700" y="662" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_Task_ScriptOtherHandling" bpmnElement="Task_ScriptOtherHandling">
+        <dc:Bounds x="2410" y="510" width="260" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DI_EndEvent_OtherHandle" bpmnElement="EndEvent_OtherHandle">
+        <dc:Bounds x="2700" y="532" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- Edges (waypoints tối thiểu) -->
+      <bpmndi:BPMNEdge id="DI_Flow_01" bpmnElement="Flow_01">
+        <di:waypoint x="156" y="158"/><di:waypoint x="200" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_02" bpmnElement="Flow_02">
+        <di:waypoint x="370" y="160"/><di:waypoint x="410" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_Inv_To_Payment" bpmnElement="Flow_Inv_To_Payment">
+        <di:waypoint x="620" y="160"/><di:waypoint x="640" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_Payment_To_NotifySystem" bpmnElement="Flow_Payment_To_NotifySystem">
+        <di:waypoint x="840" y="160"/><di:waypoint x="860" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_03" bpmnElement="Flow_03">
+        <di:waypoint x="1080" y="160"/><di:waypoint x="1110" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_NoStock" bpmnElement="Flow_NoStock">
+        <di:waypoint x="1135" y="135"/><di:waypoint x="1200" y="60"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_StockOk" bpmnElement="Flow_StockOk">
+        <di:waypoint x="1160" y="160"/><di:waypoint x="760" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_WaitCustomer" bpmnElement="Flow_WaitCustomer">
+        <di:waypoint x="1040" y="60"/><di:waypoint x="1060" y="60"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_OtpLinkSent" bpmnElement="Flow_OtpLinkSent">
+        <di:waypoint x="1280" y="60"/><di:waypoint x="1310" y="60"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_CustomerDecision" bpmnElement="Flow_CustomerDecision">
+        <di:waypoint x="1590" y="60"/><di:waypoint x="1630" y="60"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_TimeoutCancel" bpmnElement="Flow_TimeoutCancel">
+        <di:waypoint x="1220" y="131"/><di:waypoint x="1200" y="150"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_EndCanceled1" bpmnElement="Flow_EndCanceled1">
+        <di:waypoint x="1320" y="190"/><di:waypoint x="1350" y="190"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_CustomerYes" bpmnElement="Flow_CustomerYes">
+        <di:waypoint x="1680" y="60"/><di:waypoint x="1720" y="60"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_CustomerNo" bpmnElement="Flow_CustomerNo">
+        <di:waypoint x="1655" y="85"/><di:waypoint x="1720" y="190"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_EndCanceled2" bpmnElement="Flow_EndCanceled2">
+        <di:waypoint x="1960" y="190"/><di:waypoint x="1990" y="190"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_AfterSubstitutionUpdate" bpmnElement="Flow_AfterSubstitutionUpdate">
+        <di:waypoint x="1960" y="60"/><di:waypoint x="900" y="120"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ToPick" bpmnElement="Flow_ToPick">
+        <di:waypoint x="1040" y="160"/><di:waypoint x="1080" y="300"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToScan" bpmnElement="Flow_ToScan">
+        <di:waypoint x="1320" y="300"/><di:waypoint x="1350" y="300"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_CheckEnoughItems" bpmnElement="Flow_CheckEnoughItems">
+        <di:waypoint x="1590" y="300"/><di:waypoint x="1630" y="300"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ItemsYes" bpmnElement="Flow_ItemsYes">
+        <di:waypoint x="1680" y="300"/><di:waypoint x="1715" y="295"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToQualityGateway" bpmnElement="Flow_ToQualityGateway">
+        <di:waypoint x="1905" y="295"/><di:waypoint x="1940" y="295"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_QualityNo" bpmnElement="Flow_QualityNo">
+        <di:waypoint x="1965" y="320"/><di:waypoint x="2030" y="300"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToReplacementAttemptGateway" bpmnElement="Flow_ToReplacementAttemptGateway">
+        <di:waypoint x="2290" y="300"/><di:waypoint x="2320" y="300"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ReplacementTryAgain" bpmnElement="Flow_ReplacementTryAgain">
+        <di:waypoint x="2345" y="275"/><di:waypoint x="900" y="20"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ReplacementEscalateApproval" bpmnElement="Flow_ReplacementEscalateApproval">
+        <di:waypoint x="2370" y="300"/><di:waypoint x="2160" y="510"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_QualityYes" bpmnElement="Flow_QualityYes">
+        <di:waypoint x="1990" y="295"/><di:waypoint x="2160" y="120"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ToPack" bpmnElement="Flow_ToPack">
+        <di:waypoint x="2290" y="160"/><di:waypoint x="2320" y="260"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ToDispatch" bpmnElement="Flow_ToDispatch">
+        <di:waypoint x="2580" y="260"/><di:waypoint x="2320" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToShippingStatus" bpmnElement="Flow_ToShippingStatus">
+        <di:waypoint x="2580" y="160"/><di:waypoint x="2610" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToShippingGateway" bpmnElement="Flow_ToShippingGateway">
+        <di:waypoint x="2890" y="160"/><di:waypoint x="2920" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ShippingSuccess" bpmnElement="Flow_ShippingSuccess">
+        <di:waypoint x="2970" y="160"/><di:waypoint x="3010" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_SendEmail" bpmnElement="Flow_SendEmail">
+        <di:waypoint x="3290" y="160"/><di:waypoint x="3320" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_EndSuccess" bpmnElement="Flow_EndSuccess">
+        <di:waypoint x="3600" y="160"/><di:waypoint x="3630" y="160"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ItemsNo" bpmnElement="Flow_ItemsNo">
+        <di:waypoint x="1655" y="325"/><di:waypoint x="1715" y="415"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_ToRetryGateway" bpmnElement="Flow_ToRetryGateway">
+        <di:waypoint x="1905" y="415"/><di:waypoint x="1940" y="415"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_EscalateApproval" bpmnElement="Flow_EscalateApproval">
+        <di:waypoint x="1965" y="440"/><di:waypoint x="2160" y="510"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_AfterApprovalDecision" bpmnElement="Flow_AfterApprovalDecision">
+        <di:waypoint x="2290" y="550"/><di:waypoint x="2320" y="550"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ApprovalCancelRefund" bpmnElement="Flow_ApprovalCancelRefund">
+        <di:waypoint x="2345" y="575"/><di:waypoint x="2410" y="680"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_EndCanceled3" bpmnElement="Flow_EndCanceled3">
+        <di:waypoint x="2670" y="680"/><di:waypoint x="2700" y="680"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ApprovalOtherHandle" bpmnElement="Flow_ApprovalOtherHandle">
+        <di:waypoint x="2370" y="550"/><di:waypoint x="2410" y="550"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_EndOtherHandle" bpmnElement="Flow_EndOtherHandle">
+        <di:waypoint x="2670" y="550"/><di:waypoint x="2700" y="550"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ApprovalTryPickAgain" bpmnElement="Flow_ApprovalTryPickAgain">
+        <di:waypoint x="2320" y="525"/><di:waypoint x="1470" y="260"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ApprovalSubstitution" bpmnElement="Flow_ApprovalSubstitution">
+        <di:waypoint x="2345" y="525"/><di:waypoint x="900" y="20"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_RetryLoop" bpmnElement="Flow_RetryLoop">
+        <di:waypoint x="1940" y="390"/><di:waypoint x="1470" y="260"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DI_Flow_ShippingFailToException" bpmnElement="Flow_ShippingFailToException">
+        <di:waypoint x="2945" y="185"/><di:waypoint x="2160" y="510"/>
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</bpmn:definitions>

@@ -1,0 +1,15 @@
+Đặt 2 file sau vào thư mục Docs/ này trước khi nộp:
+
+1. File tóm tắt đồ án (Word) theo template thầy gửi
+   - Đề xuất tên: BaoCao_IS207.docx
+
+2. File PowerPoint chụp hình các giao diện chức năng chính
+   - Đề xuất tên: Slide_IS207.pptx
+
+Sau khi copy 2 file vào đây, xóa file hướng dẫn này (_DAT_FILE_VAO_DAY.txt) rồi commit/push lại:
+
+   git add Docs
+   git commit -m "Add report and slides"
+   git push
+
+(README.md ở thư mục gốc đã mô tả 2 file này ở mục Cấu trúc thư mục nộp.)

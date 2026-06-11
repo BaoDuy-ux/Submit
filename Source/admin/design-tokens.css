@@ -1,0 +1,96 @@
+/**
+ * IS207 Fashion — Design Tokens
+ * Template màu nâu (Earth Brown) + căn lề / spacing chuẩn
+ *
+ * Cấp màu:
+ *   Primary    → nút, menu, footer (nâu socola)
+ *   Secondary  → nhấn phụ, icon accent (vàng nâu)
+ *   Neutral    → nền, chữ, viền
+ *   Semantic   → sale, success (dùng tiết chế)
+ */
+
+:root {
+    /* ── PRIMARY (tông chủ đạo — 60%) ── */
+    --color-primary-900: #2d2118;
+    --color-primary-800: #3d2e24;
+    --color-primary-700: #4a3329;
+    --color-primary-600: #5c4033;
+    --color-primary-500: #6e5042;
+    --color-primary-100: #ebe0d4;
+    --color-primary-50: #f5f0eb;
+
+    /* ── SECONDARY (nhấn — 30%) ── */
+    --color-secondary-600: #9a7b52;
+    --color-secondary-500: #b8956c;
+    --color-secondary-100: #f0e6d8;
+
+    /* ── NEUTRAL (nền & chữ — 10%) ── */
+    --color-neutral-900: #3d2e24;
+    --color-neutral-700: #5c4a3d;
+    --color-neutral-500: #8a7566;
+    --color-neutral-200: #e0d5c8;
+    --color-neutral-100: #f5f0eb;
+    --color-neutral-0: #fffcf8;
+
+    /* ── SEMANTIC ── */
+    --color-danger: #a63d2f;
+    --color-success: #3d6b4f;
+
+    /* ── ALIASES (dùng trong component) ── */
+    --ink: var(--color-neutral-900);
+    --ink-soft: var(--color-neutral-700);
+    --muted: var(--color-neutral-500);
+    --bg: var(--color-primary-50);
+    --surface: var(--color-neutral-0);
+    --border: var(--color-neutral-200);
+    --accent: var(--color-primary-600);
+    --accent-hover: var(--color-primary-700);
+    --accent-light: var(--color-primary-100);
+    --gold: var(--color-secondary-500);
+    --sale: var(--color-danger);
+
+    /* ── SPACING (căn lề 8px grid) ── */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* ── LAYOUT ── */
+    --container-max: 1280px;
+    --container-narrow: 720px;
+    --gutter: var(--space-6);
+    --header-height: 72px;
+    --subnav-offset: 72px;
+
+    /* ── TYPOGRAPHY ── */
+    --font-ui: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --text-xs: clamp(0.6875rem, 0.65rem + 0.15vw, 0.75rem);
+    --text-sm: clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem);
+    --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+    --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    --text-2xl: clamp(1.75rem, 1.4rem + 1.2vw, 2rem);
+    --text-hero: clamp(2.25rem, 1.6rem + 2.5vw, 4rem);
+    --leading-tight: 1.15;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
+
+    /* ── EFFECTS ── */
+    --shadow-sm: 0 2px 8px rgba(45, 33, 24, 0.08);
+    --shadow: 0 12px 40px rgba(45, 33, 24, 0.12);
+    --shadow-lg: 0 20px 50px rgba(45, 33, 24, 0.15);
+    --radius-sm: 2px;
+    --radius: 4px;
+    --radius-lg: 8px;
+    --transition: 0.2s ease;
+
+    /* ── BREAKPOINTS (reference for media queries) ── */
+    /* sm: 576px | md: 768px | lg: 992px | xl: 1200px */
+}

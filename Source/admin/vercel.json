@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "is207-admin",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

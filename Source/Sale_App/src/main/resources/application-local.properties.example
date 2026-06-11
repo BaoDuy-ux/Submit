@@ -1,0 +1,33 @@
+# =============================================================================
+# GUI MA QUA EMAIL (chon 1 trong 2 cach)
+# =============================================================================
+# Doi ten file nay thanh: application-local.properties
+# Restart Spring Boot sau khi sua.
+# Tai khoan web phai co EMAIL trong ho so (cap nhat trong profile).
+# =============================================================================
+
+MAIL_ENABLED=true
+MAIL_FROM_NAME=IS207 Fashion
+RESET_EXPOSE_TOKEN=false
+
+# --- CACH 1: MAILTRAP (khuyen dung — KHONG can Gmail App Password) ---
+# 1. Dang ky mien phi: https://mailtrap.io
+# 2. Email Testing -> Inboxes -> chon inbox -> SMTP Settings
+# 3. Copy Host, Port, Username, Password vao day:
+
+spring.mail.host=sandbox.smtp.mailtrap.io
+spring.mail.port=2525
+spring.mail.username=THAY_BANG_USERNAME_MAILTRAP
+spring.mail.password=THAY_BANG_PASSWORD_MAILTRAP
+MAIL_FROM=no-reply@is207.local
+
+# --- CACH 2: GMAIL (chi khi tao duoc App Password) ---
+# Bat xac minh 2 buoc: https://myaccount.google.com/security
+# App Password: https://myaccount.google.com/apppasswords
+# Neu trang bao "khong kha dung" -> dung Mailtrap (Cach 1)
+
+# spring.mail.host=smtp.gmail.com
+# spring.mail.port=587
+# spring.mail.username=your.email@gmail.com
+# spring.mail.password=xxxx xxxx xxxx xxxx
+# MAIL_FROM=your.email@gmail.com

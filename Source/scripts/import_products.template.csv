@@ -1,0 +1,4 @@
+name,category,sku,price,brand,material,colors,sizes,stock_by_size,image_url,image_file
+Áo thun basic,ao,AO001,199000,IS207 Fashion,Cotton,"Đen,Trắng","S,M,L","S:10|M:8|L:6",https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&fit=crop,
+Quần jeans slim,quan,QU001,399000,IS207 Fashion,Denim,"Xanh","28,29,30","28:5|29:8|30:7",,jeans1.jpg
+

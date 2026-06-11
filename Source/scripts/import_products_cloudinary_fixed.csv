@@ -1,0 +1,99 @@
+name,category,sku,price,brand,material,colors,sizes,stock_by_size,image_url,image_file
+Áo hoodie unisex,ao,AHD003,520000,UrbanX,Nỉ,Xám;Đen,M;L;XL,M:7|L:9|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899405/is207/products/AHD003.png,AHD003.jpg
+Áo so mi caro,ao,ASM004,390000,IS207,Kaki,Xanh;Đỏ,M;L,M:6|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899435/is207/products/ASM004.png,ASM004.jpg
+Quần short thể thao,quan,QST005,220000,SportZ,Polyester,Đen;Xám,S;M;L,S:8|M:10|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899439/is207/products/QST005.png,QST005.jpg
+Áo khoác bomber,ao,AKB006,680000,UrbanX,Dù,Đen;Rêu,M;L;XL,M:4|L:6|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899444/is207/products/AKB006.png,AKB006.jpg
+Quần jogger nam,quan,QJG007,340000,IS207,Nỉ,Xám;Đen,M;L;XL,M:9|L:7|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899447/is207/products/QJG007.jpg,QJG007.jpg
+Áo polo nam,ao,APL008,280000,Classic,Cotton,Trắng;Xanh,S;M;L,S:5|M:10|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899449/is207/products/APL008.jpg,APL008.jpg
+Quần kaki dài,quan,QKK009,410000,Classic,Kaki,Kem;Đen,M;L;XL,M:6|L:9|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899452/is207/products/QKK009.jpg,qkk009.jpg
+Áo len cổ lọ,ao,ALC010,470000,Winter,Wool,Be;Nâu,M;L,M:5|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899455/is207/products/ALC010.jpg,ALC010.jpg
+Váy hoa nữ,vay,VHN011,360000,Femi,Voan,Hồng;Trắng,S;M,S:7|M:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899458/is207/products/VHN011.jpg,VHN011.jpg
+Áo croptop nữ,ao,ACT012,190000,Femi,Cotton,Trắng;Hồng,S;M,S:9|M:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899460/is207/products/ACT012.jpg,ACT012.jpg
+Quần legging nữ,quan,QLG013,210000,SportZ,Thun lạnh,Đen,S;M;L,S:10|M:10|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899462/is207/products/QLG013.jpg,QLG013.jpg
+Áo blazer nữ,ao,ABZ014,750000,OfficeX,Tuyết mua,Đen;Kem,M;L,M:4|L:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899464/is207/products/ABZ014.jpg,ABZ014.jpg
+Chân váy tennis,vay,CVT015,270000,Femi,Kaki,Trắng;Đen,S;M,S:6|M:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899467/is207/products/CVT015.jpg,CVT015.jpg
+Áo sweater oversize,ao,ASO016,430000,UrbanX,Nỉ,Xám;Trắng,M;L;XL,M:8|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899469/is207/products/ASO016.jpg,ASO016.jpg
+Quần baggy jean,quan,QBJ017,490000,DenimCo,Jean,Xanh nhạt,S;M;L,S:5|M:7|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899472/is207/products/QBJ017.jpg,QBJ017.jpg
+Áo tanktop gym,ao,ATG018,180000,SportZ,Polyester,Đen;Trắng,M;L,M:10|L:9,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899474/is207/products/ATG018.jpg,ATG018.jpg
+Đầm công sở,vay,DCS019,620000,OfficeX,Lụa,Đen;Xanh navy,S;M;L,S:3|M:5|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899477/is207/products/DCS019.jpg,DCS019.jpg
+Áo cardigan nữ,ao,ACD020,390000,Winter,Len,Be;Nâu,M;L,M:6|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899480/is207/products/ACD020.jpg,ACD020.jpg
+Quần tây nam,quan,QTN021,530000,Classic,Tuyết mua,Đen;Xám,M;L;XL,M:5|L:7|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899482/is207/products/QTN021.jpg,QTN021.jpg
+Áo so mi trắng,ao,ASM022,320000,OfficeX,Cotton,Trắng,S;M;L,S:8|M:10|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899484/is207/products/ASM022.jpg,ASM022.jpg
+Quần short jean nữ,quan,QSJ023,260000,DenimCo,Jean,Xanh,S;M,S:6|M:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899486/is207/products/QSJ023.jpg,QSJ023.jpg
+Áo khoác jean,ao,AKJ024,710000,DenimCo,Jean,Xanh đậm,M;L;XL,M:4|L:6|XL:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899488/is207/products/AKJ024.jpg,AKJ024.jpg
+Áo thun in hình,ao,ATH025,230000,UrbanX,Cotton,Trắng;Đen,S;M;L,S:10|M:9|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899490/is207/products/ATH025.jpg,ATH025.jpg
+Quần culottes nữ,quan,QCL026,350000,Femi,Kaki,Kem;Đen,M;L,M:7|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899493/is207/products/QCL026.jpg,QCL026.jpg
+Áo vest nam,ao,AVN027,980000,Classic,Tuyết mua,Đen,M;L;XL,M:3|L:4|XL:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899495/is207/products/AVN027.jpg,AVN027.jpg
+Đầm maxi đi biển,vay,DMB028,540000,Femi,Voan,Vàng;Trắng,S;M;L,S:4|M:6|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899497/is207/products/DMB028.jpg,DMB028.jpg
+Áo gile len,ao,AGL029,310000,Winter,Len,Nâu;Kem,M;L,M:7|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899499/is207/products/AGL029.jpg,AGL029.jpg
+Quần thể thao nữ,quan,QTT030,290000,SportZ,Polyester,Đen;Hồng,S;M;L,S:9|M:8|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899501/is207/products/QTT030.jpg,QTT030.jpg
+Áo hoodie zip,ao,AHZ031,550000,UrbanX,Nỉ,Đen;Xám,M;L;XL,M:6|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899503/is207/products/AHZ031.jpg,AHZ031.jpg
+Quần dùi thun nam,quan,QDT032,150000,SportZ,Cotton,Đen;Xám,S;M;L,S:12|M:15|L:10,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899506/is207/products/QDT032.jpg,QDT032.jpg
+Áo so mi cổ trụ,ao,ASM033,360000,Classic,Linen,Trắng;Xanh nhạt,M;L;XL,M:8|L:7|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899507/is207/products/ASM033.jpg,ASM033.jpg
+Váy midi xếp ly,vay,VMX034,420000,Femi,Lụa,Nâu;Đen,S;M;L,S:5|M:8|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899510/is207/products/VMX034.jpg,VMX034.jpg
+Áo khoác gió thể thao,ao,AKG035,480000,SportZ,Dù,Xanh duong;Đen,M;L;XL,M:10|L:8|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899512/is207/products/AKG035.jpg,AKG035.jpg
+Quần jean rách nam,quan,QJR036,490000,DenimCo,Jean,Xanh bạc,S;M;L;XL,S:4|M:9|L:8|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899514/is207/products/QJR036.jpg,QJR036.jpg
+Áo thun polo nữ,ao,APN037,260000,Classic,Cotton,Hồng;Trắng,S;M;L,S:8|M:10|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899516/is207/products/APN037.jpg,APN037.jpg
+Chân váy chữ A,vay,CVA038,290000,Femi,Kaki,Đen;Be,S;M,S:11|M:9,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899517/is207/products/CVA038.jpg,CVA038.jpg
+Áo len gân nữ,ao,ALG039,380000,Winter,Wool,Đỏ dô;Kem,M;L,M:7|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899519/is207/products/ALG039.jpg,ALG039.jpg
+Quần ống rộng nữ,quan,QOR040,370000,Femi,Tuyết mua,Đen;Trắng,M;L;XL,M:9|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899522/is207/products/QOR040.jpg,QOR040.jpg
+Áo khoác phao béo,ao,AKP041,850000,Winter,Phao,Đen;Rêu,M;L;XL,M:3|L:5|XL:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899524/is207/products/AKP041.jpg,AKP041.jpg
+Quần jogger túi hộp,quan,QTH042,380000,UrbanX,Kaki,Đen;Rêu,M;L;XL,M:8|L:7|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899526/is207/products/QTH042.jpg,QTH042.jpg
+Áo dây lụa nữ,ao,ADL043,170000,Femi,Lụa,Trắng;Đen,S;M,S:10|M:12,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899528/is207/products/ADL043.jpg,ADL043.jpg
+Đầm len body,vay,DLB044,510000,Winter,Len,Đen;Nâu,S;M;L,S:4|M:6|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899530/is207/products/DLB044.jpg,DLB044.jpg
+Áo so mi denim,ao,ASD045,450000,DenimCo,Jean,Xanh nhạt,M;L;XL,M:6|L:8|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899533/is207/products/ASD045.jpg,ASD045.jpg
+Quần short kaki nam,quan,QSK046,280000,IS207,Kaki,Kem;Than,S;M;L;XL,S:7|M:11|L:9|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899535/is207/products/QSK046.jpg,QSK046.jpg
+Áo thun tay dài,ao,ATD047,220000,IS207,Cotton,Đen;Trắng,S;M;L,S:9|M:12|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899537/is207/products/ATD047.jpg,ATD047.jpg
+Váy hai dây hoa nhí,vay,VHD048,390000,Femi,Voan,Vàng;Xanh,S;M;L,S:6|M:7|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899539/is207/products/VHD048.jpg,VHD048.jpg
+Áo blazer dáng ngắn,ao,ABN049,690000,OfficeX,Tuyết mua,Kem,S;M,S:5|M:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899541/is207/products/ABN049.jpg,ABN049.jpg
+Quần tây baggy nữ,quan,QTB050,410000,OfficeX,Tuyết mua,Đen;Xám,S;M;L,S:8|M:10|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899543/is207/products/QTB050.jpg,QTB050.jpg
+Áo sweater nữ chân cua,ao,ASC051,420000,UrbanX,Nỉ,Xanh rêu,M;L;XL,M:7|L:9|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899545/is207/products/ASC051.jpg,ASC051c.jpg
+Quần kaki ống suông,quan,QKS052,430000,Classic,Kaki,Đen;Be,M;L;XL,M:8|L:8|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899548/is207/products/QKS052.jpg,QKS052.jpg
+Áo croptop tay dài,ao,ACD053,210000,Femi,Thun gân,Đen;Trắng,S;M,S:10|M:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899551/is207/products/ACD053.jpg,ACD053.jpg
+Đầm voan to dáng dài,vay,DVD054,650000,Femi,Voan,Hồng pastel,S;M;L,S:4|M:5|L:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899553/is207/products/DVD054.jpg,DVD054.jpg
+Áo khoác dạ dáng dài,ao,AKD055,1200000,Winter,Dạ,Nâu;Đen,M;L,M:3|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899555/is207/products/AKD055.jpg,AKD055.jpg
+Quần boi nam co giăn,quan,QBN056,190000,SportZ,Polyester,Đen,M;L;XL,M:15|L:12|XL:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899557/is207/products/QBN056.jpg,QBN056.jpg
+Áo thun oversize unisex,ao,ATO057,260000,UrbanX,Cotton,Trắng;Tím,M;L;XL,M:14|L:12|XL:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899559/is207/products/ATO057.jpg,ATO057.jpg
+Chân váy jean ngắn,vay,CVJ058,320000,DenimCo,Jean,Xanh basic,S;M;L,S:8|M:9|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899562/is207/products/CVJ058.jpg,CVJ058.jpg
+Áo so mi flannel,ao,ASF059,410000,UrbanX,Kaki,Đỏ đen;Xanh den,M;L;XL,M:7|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899564/is207/products/ASF059.jpg,ASF059.jpg
+Quần baggy vải nữ,quan,QBV060,360000,OfficeX,Tuyết mua,Kem;Đen,S;M;L,S:9|M:11|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899566/is207/products/QBV060.jpg,QBV060.jpg
+Áo gile phao unisex,ao,AGP061,590000,Winter,Phao,Đen;Trắng,M;L;XL,M:6|L:6|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899568/is207/products/AGP061.jpg,AGP061.jpg
+Quần jean ống rộng nam,quan,QJR062,520000,DenimCo,Jean,Xanh den,S;M;L;XL,S:5|M:10|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899570/is207/products/QJR062.jpg,QJR062.jpg
+Áo trễ vai nữ,ao,ATV063,280000,Femi,Thun co giăn,Trắng;Đen,S;M,S:8|M:9,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899572/is207/products/ATV063.jpg,ATV063.jpg
+Đầm suông chữ A,vay,DSA064,480000,OfficeX,Lụa,Xanh ngọc,S;M;L,S:4|M:7|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899574/is207/products/DSA064.jpg,DSA064.jpg
+Áo giữ nhiệt nam,ao,AGN065,180000,Winter,Thun lạnh,Đen;Xám,M;L;XL,M:15|L:12|XL:10,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899576/is207/products/AGN065.jpg,AGN065.jpg
+Quần short nữ thể thao,quan,QSN066,230000,SportZ,Nỉ,Xám,S;M;L,S:10|M:12|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899578/is207/products/QSN066.jpg,QSN066.jpg
+Áo khoác kaki,ao,AKK067,590000,Classic,Kaki,Vàng ḅ;Đen,M;L;XL,M:5|L:7|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899580/is207/products/AKK067.jpg,AKK067.jpg
+Chân váy dài xếp ly,vay,CVD068,350000,Femi,Voan,Đen;Kem,S;M;L,S:6|M:8|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899582/is207/products/CVD068.jpg,CVD068.jpg
+Áo thun cổ tim nam,ao,ACT069,220000,IS207,Cotton,Trắng;Xám,S;M;L,S:11|M:10|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899584/is207/products/ACT069.jpg,ACT069.jpg
+Quần jean nữ lót,quan,QJL070,380000,DenimCo,Jean,Xanh nhạt,S;M;L,S:7|M:9|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899586/is207/products/QJL070.jpg,QJL070.jpg
+Áo so mi lụa công sở,ao,ASL071,450000,OfficeX,Lụa,Trắng;Hồng,S;M;L,S:8|M:10|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899588/is207/products/ASL071.jpg,ASL071.jpg
+Quần nỉ bo gấu nam,quan,QNB072,330000,IS207,Nỉ,Đen,M;L;XL,M:9|L:8|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899590/is207/products/QNB072.jpg,QNB072.jpg
+Áo khoác da biker,ao,AKD073,950000,UrbanX,Da PU,Đen,M;L;XL,M:4|L:5|XL:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899592/is207/products/AKD073.jpg,AKD073.jpg
+Váy duôi cá tiểu thu,vay,VDC074,580000,Femi,Tuyết mua,Trắng,S;M,S:5|M:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899595/is207/products/VDC074.jpg,VDC074.jpg
+Áo tanktop dáng rộng,ao,ATR075,190000,SportZ,Polyester,Xám;Xanh,M;L;XL,M:12|L:10|XL:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899597/is207/products/ATR075.jpg,ATR075.jpg
+Quần lót kaki nữ,quan,QLK076,270000,Classic,Kaki,Kem,S;M;L,S:7|M:8|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899599/is207/products/QLK076.jpg,QLK076.jpg
+Áo cardigan len dày,ao,ACD077,490000,Winter,Len,Xám chuột,M;L;XL,M:5|L:6|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899601/is207/products/ACD077.jpg,ACD077.jpg
+Yếm jean dáng dài,vay,YJD078,560000,DenimCo,Jean,Xanh đậm,S;M;L,S:4|M:6|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899603/is207/products/YJD078.jpg,YJD078.jpg
+Áo so mi họa tiết biển,ao,ASH079,340000,UrbanX,Rayon,Đa sắc,M;L;XL,M:8|L:10|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899606/is207/products/ASH079.jpg,ASH079.jpg
+Quần legging dùi nữ,quan,QLD080,160000,SportZ,Thun lạnh,Đen,S;M;L,S:14|M:15|L:11,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899608/is207/products/QLD080.jpg,QLD080.jpg
+Áo khoác gió mỏng,ao,AKM081,350000,SportZ,Dù,Xám nhạt,M;L;XL,M:11|L:9|XL:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899610/is207/products/AKM081.jpg,AKM081.jpg
+Quần tây ống dáng nam,quan,QTO082,550000,Classic,Tuyết mua,Xanh navy,M;L;XL,M:7|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899612/is207/products/QTO082.jpg,QTO082.jpg
+Áo thun unisex phản quang,ao,ATP083,270000,UrbanX,Cotton,Đen,M;L;XL,M:13|L:11|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899615/is207/products/ATP083.jpg,ATP083.jpg
+Đầm body hai dây,vay,DBH084,420000,Femi,Thun gân,Đen;Đỏ,S;M,S:8|M:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899617/is207/products/DBH084.jpg,DBH084.jpg
+Áo len cổ tròn,ao,ALC085,420000,Winter,Wool,Xanh rêu,M;L;XL,M:6|L:7|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899619/is207/products/ALC085.jpg,ALC085.jpg
+Quần baggy jean rách,quan,QBJ086,510000,DenimCo,Jean,Xanh nhạt,S;M;L,S:5|M:8|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899621/is207/products/QBJ086.jpg,QBJ086.jpg
+Áo so mi cổ chân thuyền,ao,ASC087,380000,Classic,Linen,Trắng,M;L;XL,M:6|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899623/is207/products/ASC087.jpg,ASC087.jpg
+Quần short thun nữ,quan,QST088,180000,SportZ,Cotton,Xám;Hồng,S;M;L,S:12|M:10|L:8,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899625/is207/products/QST088.jpg,QST088.jpg
+Áo khoác dạ tweed,ao,AKT089,890000,Femi,Dạ Tweed,Kem;Đen,S;M,S:5|M:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899627/is207/products/AKT089.jpg,AKT089.jpg
+Chân váy suông dài,vay,CVS090,340000,OfficeX,Tuyết mua,Đen,S;M;L,S:7|M:9|L:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899630/is207/products/CVS090.jpg,CVS090.jpg
+Áo polo phối bo,ao,APP091,290000,Classic,Cotton,Xám;Trắng,S;M;L;XL,S:6|M:11|L:8|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899632/is207/products/APP091.jpg,APP091.jpg
+Quần jogger thun nữ,quan,QJN092,310000,SportZ,Cotton,Đen,S;M;L,S:9|M:10|L:7,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899635/is207/products/QJN092.jpg,QJN092.jpg
+Áo thun cá sấu nam,ao,ATC093,320000,Classic,Cotton,Xanh lá,M;L;XL,M:8|L:9|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899637/is207/products/ATC093.jpg,ATC093.jpg
+Bộ suit công sở nữ,ao,BSC094,1450000,OfficeX,Tuyết mua,Xám đậm,S;M;L,S:3|M:4|L:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899640/is207/products/BSC094.jpg,BSC094.jpg
+Áo sweater loang màu,ao,ASL095,460000,UrbanX,Nỉ,Xanh loang,M;L;XL,M:7|L:6|XL:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899642/is207/products/ASL095.jpg,ASL095.jpg
+Quần jean skinny nữ,quan,QJS096,470000,DenimCo,Jean,Đen tron,S;M;L,S:8|M:10|L:6,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899644/is207/products/QJS096.jpg,QJS096.jpg
+Áo so mi tay ngắn nam,ao,ASN097,330000,IS207,Rayon,H?a tiết lá,M;L;XL,M:9|L:8|XL:5,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899647/is207/products/ASN097.jpg,ASN097.jpg
+Váy maxi trễ vai,vay,VMT098,590000,Femi,Voan,Trắng,S;M;L,S:4|M:5|L:4,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899649/is207/products/VMT098.jpg,VMT098.jpg
+Áo khoác phao gile nam,ao,AKP099,550000,Winter,Phao,Đen,M;L;XL,M:6|L:8|XL:3,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899651/is207/products/AKP099.jpg,AKP099.jpg
+Quần kaki túi hộp nam,quan,QKH100,460000,UrbanX,Kaki,Xanh rêu,M;L;XL;XXL,M:5|L:7|XL:6|XXL:2,https://res.cloudinary.com/dscuuf3lx/image/upload/v1779899653/is207/products/QKH100.jpg,QKH100.jpg

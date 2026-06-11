@@ -10,11 +10,11 @@ Hệ thống thương mại điện tử thời trang gồm **website khách hà
 
 | STT | MSSV | Họ và tên | Vai trò |
 |-----|------|-----------|---------|
-| 1 | `<MSSV nhóm trưởng>` | `<Họ tên nhóm trưởng>` | Nhóm trưởng |
-| 2 | | | Thành viên |
-| 3 | | | Thành viên |
+| 1 | `24521062` | `Ngô Thiên Minh` | Nhóm trưởng |
+| 2 |`24521657` |`Đặng Trần Thiện` | Thành viên |
+| 3 |`24520377` |`Lê Đăng Bảo Duy` | Thành viên |
 
-**Tên nhóm:** `<Tên nhóm>`
+**Tên nhóm:** `Nhóm 1`
 
 ---
 
